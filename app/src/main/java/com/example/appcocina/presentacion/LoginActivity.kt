@@ -27,8 +27,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnIniciarSesion.setOnClickListener() {
             if (binding.txtEmail.text.toString().trim() == "") { //Elimino espacios en blanco
                 binding.emailField.error = getString(R.string.error)
-                println("pueba commit")
-                println("prueba 2")
+                println("commit 3")
             }
             else {
                 binding.emailField.error = null
