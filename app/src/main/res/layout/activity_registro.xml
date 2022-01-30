@@ -43,7 +43,7 @@
 
             <TextView
                 android:id="@+id/txtSignUp"
-                android:layout_width="wrap_content"
+                android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Sing Up"
@@ -120,7 +120,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnIniciarSesion"
+            android:id="@+id/btnRegistrar"
             style="@style/Widget.Material3.Button.Icon"
             android:layout_width="match_parent"
             android:layout_height="65dp"

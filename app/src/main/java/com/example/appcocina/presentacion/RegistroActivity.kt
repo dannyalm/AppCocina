@@ -23,7 +23,7 @@ class RegistroActivity : AppCompatActivity() {
             var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-        binding.btnIniciarSesion.setOnClickListener() {
+        binding.btnRegistrar.setOnClickListener() {
             if (binding.txtEmail.text.toString().trim() == "") { //Elimino espacios en blanco
                 binding.emailField.error = getString(R.string.error)
             }
