@@ -8,7 +8,7 @@
     tools:context=".presentacion.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageIngredients"
         android:layout_width="476dp"
         android:layout_height="539dp"
         android:adjustViewBounds="false"
@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageIngredients"
         app:layout_constraintVertical_bias="0.78">
 
         <Button
