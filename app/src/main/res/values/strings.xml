@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AppCocina</string>
-    <string name="error">Email Incorrecto</string>
+    <string name="errorEmail">Email Incorrecto</string>
+    <string name="errorPassword">Password Incorrecto</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

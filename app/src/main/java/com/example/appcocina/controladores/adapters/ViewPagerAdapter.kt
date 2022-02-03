@@ -1,4 +1,4 @@
-package com.example.appcocina.controladores
+package com.example.appcocina.controladores.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

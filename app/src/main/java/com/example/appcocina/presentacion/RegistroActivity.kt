@@ -25,7 +25,7 @@ class RegistroActivity : AppCompatActivity() {
         }
         binding.btnRegistrar.setOnClickListener() {
             if (binding.txtEmail.text.toString().trim() == "") { //Elimino espacios en blanco
-                binding.emailField.error = getString(R.string.error)
+                binding.emailField.error = getString(R.string.errorEmail)
             }
             else {
                 binding.emailField.error = null

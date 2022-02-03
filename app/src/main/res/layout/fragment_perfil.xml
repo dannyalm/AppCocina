@@ -29,54 +29,46 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imgPerfil"
                 android:layout_width="123dp"
                 android:layout_height="118dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="36dp"
+                android:src="@drawable/foto_chef"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8"
-                tools:src="@tools:sample/avatars" />
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="92dp"
-                android:text="Nombre:"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:text="Gregory"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/imgPerfil"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/textApellido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="100dp"
+                android:text="Díaz"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/textNombre"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtCorreo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="E-mail:"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="119dp"
-                android:layout_height="20dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
-                tools:layout_editor_absoluteY="92dp" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="112dp"
-                android:layout_height="21dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView12"
-                tools:layout_editor_absoluteY="131dp" />
+                android:text="gadiazr@hotmail.com"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/textNombre"
+                app:layout_constraintTop_toBottomOf="@+id/textNombre" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -84,6 +76,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:layout_marginRight="20dp"
             tools:ignore="SpeakableTextPresentCheck" />
 

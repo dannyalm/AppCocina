@@ -1,15 +1,13 @@
 package com.example.appcocina.controladores
 
-import com.example.appcocina.entities.Ingredients
-import com.example.appcocina.entities.User
-import com.example.appcocina.logica.IngredientsBL
+import com.example.appcocina.database.entidades.User
 import com.example.appcocina.logica.UserBL
 
 class UserController {
-    fun LoginUser(correo: String, pass: String): Boolean {
+    fun LoginUser(email: String, pass: String): Boolean {
         return UserBL().LoginUser(
-            correo.trim().uppercase(),
-            pass.trim().lowercase()
+            email.trim(),
+            pass.trim()
         )
     }
 

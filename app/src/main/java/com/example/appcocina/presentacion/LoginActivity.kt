@@ -35,11 +35,19 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnIniciarSesion.setOnClickListener() {
-            if (binding.txtEmail.text.toString().trim() == "") { //Elimino espacios en blanco
-                binding.emailField.error = getString(R.string.error)
+
+            val access = UserController().LoginUser(
+                binding.txtEmail.text.toString(),
+                binding.txtPassword.text.toString()
+            )
+
+            if (access) {
+                binding.emailField.error = getString(R.string.errorEmail)
+                binding.passwordField.error = getString(R.string.errorPassword)
             }
             else {
                 binding.emailField.error = null
+                binding.passwordField.error = null
                 var intent = Intent(this, PrincipalActivity::class.java)
                 startActivity(intent)
 

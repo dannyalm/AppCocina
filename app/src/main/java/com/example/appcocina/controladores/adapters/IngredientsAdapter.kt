@@ -1,13 +1,12 @@
 package com.example.appcocina.controladores.adapters
 
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcocina.R
 import com.example.appcocina.databinding.IngredientsListBinding
-import com.example.appcocina.entities.Ingredients
+import com.example.appcocina.database.entidades.Ingredients
 import com.squareup.picasso.Picasso
 
 class IngredientsAdapter(val ingredientsList: List<Ingredients>) :RecyclerView.Adapter<IngredientsViewHolder>(){
@@ -34,9 +33,7 @@ class IngredientsViewHolder(ingredientsView: View) : RecyclerView.ViewHolder(ing
     fun render(ingredientsView : Ingredients){
         binding.txtNameIngredients.text = ingredientsView.nombre
 
-        //internet
-        //Picasso.get().load(ingredientsView.img).into(binding.imageIngredients)
+        Picasso.get().load(ingredientsView.img).into(binding.imageIngredients)
 
-        Picasso.get().load(R.drawable.images_destacado).into(binding.imageIngredients)
     }
 }

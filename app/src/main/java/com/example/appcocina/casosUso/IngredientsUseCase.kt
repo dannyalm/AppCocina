@@ -1,6 +1,6 @@
-package com.example.appcocina.casoUso
+package com.example.appcocina.casosUso
 
-import com.example.appcocina.entities.Ingredients
+import com.example.appcocina.database.entidades.Ingredients
 
 class IngredientsUseCase {
 
@@ -8,7 +8,7 @@ class IngredientsUseCase {
         Ingredients(
             1,
             "Arroz",
-        "https://s1.eestatic.com/2021/05/31/actualidad/585453954_186766988_1706x960.jpg"
+            "https://s1.eestatic.com/2021/05/31/actualidad/585453954_186766988_1706x960.jpg"
         ),
         Ingredients(
             2,

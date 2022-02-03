@@ -45,14 +45,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    //Propias
-    implementation 'com.google.android.material:material:1.5.0'
-
-
-    // viewpager2
+    //Material
+    implementation 'com.google.android.material:material:1.5.0-rc01'
+    //Viewpager2
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    //tablayout
+    //Tablayout
     implementation 'com.google.android.material:material:1.3.0-alpha04'
-    //picasso
+    //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 }
