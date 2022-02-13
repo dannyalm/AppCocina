@@ -1,6 +1,6 @@
 package com.example.appcocina.casosUso
 
-import com.example.appcocina.database.entidades.User
+import com.example.appcocina.data.database.entidades.User
 
 class UsersUseCase {
 

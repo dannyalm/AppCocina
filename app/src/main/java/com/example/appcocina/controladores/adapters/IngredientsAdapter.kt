@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcocina.R
 import com.example.appcocina.databinding.IngredientsListBinding
-import com.example.appcocina.database.entidades.Ingredients
+import com.example.appcocina.data.database.entidades.Ingredients
 import com.squareup.picasso.Picasso
 
 class IngredientsAdapter(val ingredientsList: List<Ingredients>) :RecyclerView.Adapter<IngredientsViewHolder>(){
@@ -32,7 +32,6 @@ class IngredientsViewHolder(ingredientsView: View) : RecyclerView.ViewHolder(ing
 
     fun render(ingredientsView : Ingredients){
         binding.txtNameIngredients.text = ingredientsView.nombre
-
         Picasso.get().load(ingredientsView.img).into(binding.imageIngredients)
 
     }

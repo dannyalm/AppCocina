@@ -1,6 +1,6 @@
 package com.example.appcocina.controladores
 
-import com.example.appcocina.database.entidades.User
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.logica.UserBL
 
 class UserController {

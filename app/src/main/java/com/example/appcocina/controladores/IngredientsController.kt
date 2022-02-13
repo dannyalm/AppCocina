@@ -1,11 +1,11 @@
 package com.example.appcocina.controladores
 
-import com.example.appcocina.database.entidades.Ingredients
+import com.example.appcocina.data.database.entidades.Ingredients
 import com.example.appcocina.logica.IngredientsBL
 
 class IngredientsController {
 
-    fun getOneIngredients(): Ingredients {
+    suspend fun getOneIngredients(): Ingredients {
         return IngredientsBL().getOneIngredients()
     }
 

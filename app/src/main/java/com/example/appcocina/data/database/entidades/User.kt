@@ -1,4 +1,4 @@
-package com.example.appcocina.database.entidades
+package com.example.appcocina.data.database.entidades
 
 import java.util.*
 

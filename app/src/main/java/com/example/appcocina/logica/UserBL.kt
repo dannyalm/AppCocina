@@ -1,7 +1,7 @@
 package com.example.appcocina.logica
 
 import com.example.appcocina.casosUso.UsersUseCase
-import com.example.appcocina.database.entidades.User
+import com.example.appcocina.data.database.entidades.User
 
 class UserBL {
 
