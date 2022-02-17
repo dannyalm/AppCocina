@@ -6,7 +6,8 @@ data class Meal(
     val idIngredient: String,
     val strDescription: String,
     val strIngredient: String,
+    val strIngredientThumb: String? = null,
     val strType: String
 )
 
-fun Meal.toIngredients() = Ingredients(idIngredient,strIngredient,strType)
+fun Meal.toIngredients() = Ingredients(idIngredient,strIngredient,strIngredientThumb)

@@ -82,89 +82,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
-        <com.google.android.material.card.MaterialCardView
-
-            android:id="@+id/cardCategorias"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-           android:layout_marginLeft="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.191"
-            tools:ignore="MissingConstraints">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:contentDescription="Prueba"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/images_destacado" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
-                android:orientation="horizontal">
-                <!-- Title, secondary and supporting text -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pizza con tomates"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-
-            android:id="@+id/cardCategorias1"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toEndOf="@+id/cardCategorias"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.191"
-            tools:ignore="MissingConstraints">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:contentDescription="Prueba"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/images_destacado" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
-                android:orientation="horizontal">
-                <!-- Title, secondary and supporting text -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pizza con tomates"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
@@ -175,6 +92,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoriesListRV"
+            android:layout_width="339dp"
+            android:layout_height="268dp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+             />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressBarCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:theme="@style/Widget.MaterialComponents.CircularProgressIndicator.Medium"
+            app:indicatorColor="@android:color/holo_orange_dark"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/categoriesListRV"
+            app:layout_constraintEnd_toEndOf="@+id/categoriesListRV"
+            app:layout_constraintStart_toStartOf="@+id/categoriesListRV"
+            app:layout_constraintTop_toTopOf="@+id/categoriesListRV" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

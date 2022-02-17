@@ -9,6 +9,7 @@
     android:orientation="vertical"
     tools:context=".presentacion.RegistroActivity">
 
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="450dp"
