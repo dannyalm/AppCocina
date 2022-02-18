@@ -34,6 +34,5 @@ class CategoriesViewHolder(categoriesView: View) : RecyclerView.ViewHolder(categ
     fun render(categoriesView : Categories){
         binding.txtNameCategories.text = categoriesView.nombre
         Picasso.get().load(categoriesView.img).into(binding.imageCategories)
-
     }
 }

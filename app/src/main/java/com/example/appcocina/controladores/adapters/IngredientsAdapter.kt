@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 class IngredientsAdapter(val ingredientsList: List<Ingredients>) :RecyclerView.Adapter<IngredientsViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientsViewHolder {
-       val inflater = LayoutInflater.from(parent.context)
+        val inflater = LayoutInflater.from(parent.context)
 
         return IngredientsViewHolder(inflater.inflate(R.layout.ingredients_list, parent, false))
     }

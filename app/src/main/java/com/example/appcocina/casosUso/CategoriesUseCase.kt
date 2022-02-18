@@ -11,12 +11,11 @@ class CategoriesUseCase {
 
         var resp: MutableList<Categories> = ArrayList<Categories>()
         val service = CategoriesRetrofitAPI.getCategoriesAPI().create(CategoriesService::class.java)
-        val call = service.getAllCategories("list.php?c=list")
+        val call = service.getAllCategories("categories.php")
 
         resp = if (call.isSuccessful){
             val body = call.body()
-            //meals hay que cambiar OJO
-            body!!.meals.map {
+            body!!.categories.map {
                 it.toCategories()
             }as MutableList<Categories>
 

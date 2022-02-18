@@ -14,9 +14,7 @@ data class Ingredients(
 )
 {
     init {
-        if (this.img == null) {
-            this.img =
-                "https://isabelpaz.com/wp-content/themes/nucleare-pro/images/no-image-box.png"
-        }
+        this.img =
+                "https://www.themealdb.com/images/ingredients/"+this.nombre+".png"
     }
 }
