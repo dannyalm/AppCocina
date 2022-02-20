@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCocina">
         <activity
+            android:name=".presentacion.FilterIngredientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentacion.ItemRecetaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentacion.FilterCategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentacion.PrincipalActivity"
             android:exported="false" />
         <activity
@@ -23,8 +32,8 @@
             android:exported="false" />
         <activity
             android:name=".presentacion.MainActivity"
-            android:theme="@style/Splash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

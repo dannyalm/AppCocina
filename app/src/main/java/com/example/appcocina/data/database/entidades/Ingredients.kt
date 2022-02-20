@@ -10,6 +10,7 @@ data class Ingredients(
     @PrimaryKey()
     val id: String,
     val nombre: String?,
+    val descripcion: String?,
     var img: String?
 )
 {

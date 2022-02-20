@@ -6,14 +6,15 @@ import com.example.appcocina.data.database.entidades.Recipes
 
 class RecipesBL {
 
-    suspend fun getRecipesList():List<Recipes>{
-        return RecipesUseCase().getAllRecipes()
+    suspend fun getRecipesList(category: String):List<Recipes>{
+        return RecipesUseCase().getRecipesByCategory(category)
     }
 
-    //En caso que solo se quiera uno
-    suspend fun getOneRecipes(): Recipes {
-        val r = (0..3).random()
-        return RecipesUseCase().getAllRecipes()[r]
+    suspend fun getRecipesListByIngredient(ingredient: String):List<Recipes>{
+        return RecipesUseCase().getRecipesByIngredient(ingredient)
+    }
 
+    suspend fun getRecipe(id: String):List<Recipes>{
+        return RecipesUseCase().getOneRecipe(id)
     }
 }

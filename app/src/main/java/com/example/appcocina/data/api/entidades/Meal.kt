@@ -10,4 +10,4 @@ data class Meal(
     val strType: String
 )
 
-fun Meal.toIngredients() = Ingredients(idIngredient,strIngredient,strIngredientThumb)
+fun Meal.toIngredients() = Ingredients(idIngredient,strIngredient,strDescription,strIngredientThumb)

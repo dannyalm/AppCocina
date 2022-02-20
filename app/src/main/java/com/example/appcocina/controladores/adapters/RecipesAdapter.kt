@@ -10,7 +10,8 @@ import com.example.appcocina.databinding.RecipesListBinding
 import com.squareup.picasso.Picasso
 
 
-class RecipesAdapter(val recipesList: List<Recipes>) : RecyclerView.Adapter<RecipesViewHolder>(){
+class RecipesAdapter(val recipesList: List<Recipes>, val onClickItemSelected: (Recipes) -> Unit) :
+    RecyclerView.Adapter<RecipesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,20 +21,24 @@ class RecipesAdapter(val recipesList: List<Recipes>) : RecyclerView.Adapter<Reci
 
     override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
         val item = recipesList[position]
-        holder.render(item)
+        holder.render(item, onClickItemSelected)
     }
 
     override fun getItemCount(): Int = recipesList.size
 
 }
 
-class RecipesViewHolder(recipesView: View) : RecyclerView.ViewHolder(recipesView) {
+class RecipesViewHolder(itemRecipes: View) : RecyclerView.ViewHolder(itemRecipes) {
 
-    val binding = RecipesListBinding.bind(recipesView)
+    private val binding = RecipesListBinding.bind(itemRecipes)
 
-    fun render(recipesView : Recipes){
-        binding.txtNameRecipes.text = recipesView.nombre
-        Picasso.get().load(recipesView.img).into(binding.imageRecipes)
+    fun render(itemRecipesEntity : Recipes, onClickItemSelected: (Recipes) -> Unit){
+        binding.txtNameRecipes.text = itemRecipesEntity.nombre
+        Picasso.get().load(itemRecipesEntity.img).into(binding.imageRecipes)
+
+        itemView.setOnClickListener {
+            onClickItemSelected(itemRecipesEntity)
+        }
 
     }
 }

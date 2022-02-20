@@ -10,29 +10,34 @@ import com.example.appcocina.databinding.CategoriesListBinding
 import com.squareup.picasso.Picasso
 
 
-class CategoriesAdapter(val categoriesList: List<Categories>) : RecyclerView.Adapter<CategoriesViewHolder>(){
+class CategoriesAdapter(val categoriesList: List<Categories>, val onClickItemSelected: (Categories) -> Unit) :
+    RecyclerView.Adapter<CategoriesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-
         return CategoriesViewHolder(inflater.inflate(R.layout.categories_list, parent, false))
     }
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
         val item = categoriesList[position]
-        holder.render(item)
+        holder.render(item, onClickItemSelected)
     }
 
     override fun getItemCount(): Int = categoriesList.size
 
 }
 
-class CategoriesViewHolder(categoriesView: View) : RecyclerView.ViewHolder(categoriesView) {
+class CategoriesViewHolder(itemCategories: View) : RecyclerView.ViewHolder(itemCategories) {
 
-    val binding = CategoriesListBinding.bind(categoriesView)
+    private val binding = CategoriesListBinding.bind(itemCategories)
 
-    fun render(categoriesView : Categories){
-        binding.txtNameCategories.text = categoriesView.nombre
-        Picasso.get().load(categoriesView.img).into(binding.imageCategories)
+    fun render(itemCategoriesEntity : Categories, onClickItemSelected: (Categories) -> Unit){
+        binding.txtNameCategories.text = itemCategoriesEntity.nombre
+        Picasso.get().load(itemCategoriesEntity.img).into(binding.imageCategories)
+
+        itemView.setOnClickListener {
+            onClickItemSelected(itemCategoriesEntity)
+        }
+
     }
 }

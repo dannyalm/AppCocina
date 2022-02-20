@@ -44,26 +44,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ingredientsListRV"
-            android:layout_width="339dp"
-            android:layout_height="422dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshIngredients"
+            android:layout_width="372dp"
+            android:layout_height="529dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ingredientsListRV"
+                android:layout_width="339dp"
+                android:layout_height="422dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBarIngredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:theme="@style/Widget.MaterialComponents.CircularProgressIndicator.Medium"
             app:indicatorColor="@android:color/holo_orange_dark"
             app:layout_constraintBaseline_toBottomOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/ingredientsListRV"
-            app:layout_constraintEnd_toEndOf="@+id/ingredientsListRV"
-            app:layout_constraintStart_toStartOf="@+id/ingredientsListRV"
-            app:layout_constraintTop_toTopOf="@+id/ingredientsListRV" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

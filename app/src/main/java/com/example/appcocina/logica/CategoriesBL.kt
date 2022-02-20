@@ -9,10 +9,4 @@ class CategoriesBL {
         return CategoriesUseCase().getAllCategories()
     }
 
-    //En caso que solo se quiera un ingrediente
-    suspend fun getOneCategories(): Categories {
-        val r = (0..3).random()
-        return CategoriesUseCase().getAllCategories()[r]
-
-    }
 }

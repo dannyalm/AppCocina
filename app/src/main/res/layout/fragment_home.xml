@@ -24,29 +24,17 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="36dp"
-            android:text="Lo más destacado"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView2" />
-
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="228dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:text="Categorías"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
+            app:layout_constraintTop_toBottomOf="@+id/searchView2" />
 
         <TextView
             android:id="@+id/textView7"
@@ -60,17 +48,29 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoriesListRV"
-            android:layout_width="339dp"
-            android:layout_height="268dp"
-            android:layout_marginTop="45dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshCategories"
+            android:layout_width="372dp"
+            android:layout_height="529dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-             />
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoriesListRV"
+                android:layout_width="339dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="45dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.0" >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progressBarCategories"
@@ -80,34 +80,10 @@
             android:theme="@style/Widget.MaterialComponents.CircularProgressIndicator.Medium"
             app:indicatorColor="@android:color/holo_orange_dark"
             app:layout_constraintBaseline_toBottomOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/categoriesListRV"
-            app:layout_constraintEnd_toEndOf="@+id/categoriesListRV"
-            app:layout_constraintStart_toStartOf="@+id/categoriesListRV"
-            app:layout_constraintTop_toTopOf="@+id/categoriesListRV" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recipesListRV"
-            android:layout_width="339dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="45dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/progressBarRecipes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:theme="@style/Widget.MaterialComponents.CircularProgressIndicator.Medium"
-            app:indicatorColor="@android:color/holo_orange_dark"
-            app:layout_constraintBaseline_toBottomOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/recipesListRV"
-            app:layout_constraintEnd_toEndOf="@+id/recipesListRV"
-            app:layout_constraintStart_toStartOf="@+id/recipesListRV"
-            app:layout_constraintTop_toTopOf="@+id/recipesListRV" />
+            app:layout_constraintTop_toBottomOf="@+id/searchView2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

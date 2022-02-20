@@ -8,25 +8,40 @@ import com.example.appcocina.data.database.entidades.Recipes
 
 class RecipesUseCase {
 
-    suspend fun getAllRecipes():List<Recipes>{
-
-        var resp: MutableList<Recipes> = ArrayList<Recipes>()
+    suspend fun getRecipesByCategory(category: String):List<Recipes>{
         val service = RetrofitAPI.getAPI().create(RecipesService::class.java)
-        //OJO SE BUSCA POR ID
-        val call = service.getAllRecipes("lookup.php?i=52772")
+        //OJO SE BUSCA POR EL NOMBRE DE LA CATEGORÍA
+        val call = service.getAllRecipes("filter.php?c=$category")
 
-        resp = if (call.isSuccessful){
-            val body = call.body()
-            //meals hay que cambiar OJO
-            body!!.meals.map {
+        var resp = if (call.isSuccessful){
+            return call.body()!!.meals.map {
                 it.toRecipes()
-            }as MutableList<Recipes>
-
-        }else{
-            ArrayList<Recipes>()
-        }
-
+            }
+        }else (ArrayList<Recipes>())
         return resp
-        println(resp)
     }
+    suspend fun getRecipesByIngredient(ingredient: String):List<Recipes>{
+        val service = RetrofitAPI.getAPI().create(RecipesService::class.java)
+        //OJO SE BUSCA POR EL NOMBRE DEL INGREDIENTE
+        val call = service.getAllRecipes("filter.php?i=$ingredient")
+
+        var resp = if (call.isSuccessful){
+            return call.body()!!.meals.map {
+                it.toRecipes()
+            }
+        }else (ArrayList<Recipes>())
+        return resp
+    }
+
+    suspend fun getOneRecipe(id: String):List<Recipes>{
+        val service = RetrofitAPI.getAPI().create(RecipesService::class.java)
+        val call = service.getAllRecipes("lookup.php?i=$id")
+        var resp = if (call.isSuccessful){
+            return call.body()!!.meals.map {
+                it.toRecipes()
+            }
+        }else (ArrayList<Recipes>())
+        return resp
+    }
+
 }

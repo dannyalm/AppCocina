@@ -9,7 +9,8 @@ import com.example.appcocina.databinding.IngredientsListBinding
 import com.example.appcocina.data.database.entidades.Ingredients
 import com.squareup.picasso.Picasso
 
-class IngredientsAdapter(val ingredientsList: List<Ingredients>) :RecyclerView.Adapter<IngredientsViewHolder>(){
+class IngredientsAdapter(val ingredientsList: List<Ingredients>, val onClickItemSelected: (Ingredients) -> Unit) :
+    RecyclerView.Adapter<IngredientsViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -19,20 +20,23 @@ class IngredientsAdapter(val ingredientsList: List<Ingredients>) :RecyclerView.A
 
     override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
         val item = ingredientsList[position]
-        holder.render(item)
+        holder.render(item, onClickItemSelected)
     }
 
     override fun getItemCount(): Int = ingredientsList.size
 
 }
 
-class IngredientsViewHolder(ingredientsView: View) : RecyclerView.ViewHolder(ingredientsView) {
+class IngredientsViewHolder(itemIngredients: View) : RecyclerView.ViewHolder(itemIngredients) {
 
-    val binding = IngredientsListBinding.bind(ingredientsView)
+    private val binding = IngredientsListBinding.bind(itemIngredients)
 
-    fun render(ingredientsView : Ingredients){
-        binding.txtNameIngredients.text = ingredientsView.nombre
-        Picasso.get().load(ingredientsView.img).into(binding.imageIngredients)
+    fun render(itemIngredientsEntity : Ingredients, onClickItemSelected: (Ingredients) -> Unit){
+        binding.txtNameIngredients.text = itemIngredientsEntity.nombre
+        Picasso.get().load(itemIngredientsEntity.img).into(binding.imageIngredients)
 
+        itemView.setOnClickListener {
+            onClickItemSelected(itemIngredientsEntity)
+        }
     }
 }
