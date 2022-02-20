@@ -7,6 +7,19 @@
         <entry key="..\:/Users/danie/Desktop/OptativaIII/AppCocina/AppCocina/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/danie/Desktop/OptativaIII/AppCocina/AppCocina/app/src/main/res/layout/activity_principal.xml" value="0.151268115942029" />
         <entry key="..\:/Users/danie/Desktop/OptativaIII/AppCocina/AppCocina/app/src/main/res/layout/activity_registro.xml" value="0.22" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/drawable/bg_circle_radius_primary.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/drawable/ic_receta_24.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_filter_category.xml" value="0.22" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_filter_ingredient.xml" value="0.16485507246376813" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_item_receta.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_login.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_registro.xml" value="0.1" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/categories_list.xml" value="0.1" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/fragment_busqueda.xml" value="0.1" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/fragment_mis_listas.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/fragment_mis_recetas.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/recipes_list.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2203125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/drawable/border_search_view.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/drawable/ic_email_24.xml" value="0.2203125" />
@@ -14,24 +27,18 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/drawable/ic_lock_24.xml" value="0.2203125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/drawable/ic_user_24.xml" value="0.2203125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/drawable/splash_screen.xml" value="0.21614583333333334" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_category_filter.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_filter_category.xml" value="0.22" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_filter_ingredient.xml" value="0.22" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_ingredient_filter.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_item_receta.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_principal.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_registro.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/categories_list.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/fragment_busqueda.xml" value="0.22" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/fragment_busqueda.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/fragment_crear_receta.xml" value="0.25" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/fragment_mis_listas.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/fragment_mis_recetas.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/fragment_perfil.xml" value="0.3048211508553655" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/ingredients_list.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/recipes_list.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/menu/bottom_bar_menu.xml" value="0.20416666666666666" />
       </map>
     </option>

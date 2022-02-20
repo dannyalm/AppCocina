@@ -26,7 +26,7 @@ class ItemRecetaActivity : AppCompatActivity() {
         binding = ActivityItemRecetaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.button.setOnClickListener(){
+        binding.buttonAtras.setOnClickListener(){
             onBackPressed()
         }
 

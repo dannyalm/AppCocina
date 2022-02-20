@@ -37,10 +37,10 @@
 
             <TextView
                 android:id="@+id/txtNameCategories"
-                android:layout_width="163dp"
+                android:layout_width="170dp"
                 android:layout_height="31dp"
                 android:gravity="left"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
 
                 app:layout_constraintBottom_toBottomOf="parent"

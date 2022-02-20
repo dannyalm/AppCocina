@@ -1,76 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentacion.FilterIngredientActivity">
 
-    <Button
-        android:id="@+id/btnAtras"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:text="ATRAS"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:elevation="0dp"
+        tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/txtNameIngredient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
-        android:text="Categoria"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAtras" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/btnAtras"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            app:navigationIcon="@drawable/ic_back_24">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipesListRV"
-        android:layout_width="341dp"
-        android:layout_height="471dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescripcionIngrediente"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imgIngrediente"
-        android:layout_width="130dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="116dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
-        app:layout_constraintStart_toEndOf="@+id/txtNameIngredient"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+                <TextView
+                    android:id="@+id/txtNameIngredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:text="Ingrediente"
+                    android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/txtDescripcionIngrediente"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNameIngredient" />
+            </LinearLayout>
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progressBarRecipes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:theme="@style/Widget.MaterialComponents.CircularProgressIndicator.Medium"
-        app:indicatorColor="@android:color/holo_orange_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        </androidx.appcompat.widget.Toolbar>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="650dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvDetailIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="5dp"
+                tools:ignore="MissingConstraints">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#FF7F50" />
+
+                    <ImageView
+                        android:id="@+id/imgIngrediente"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:padding="15dp"
+                        android:scaleType="fitStart" />
+
+                    <TextView
+                        android:id="@+id/txtDescripcionIngrediente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_toEndOf="@id/imgIngrediente"
+                        android:ellipsize="end"
+                        android:maxLines="7"
+                        android:padding="15dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/txtListaIngre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cvDetailIngredients"
+                android:layout_marginStart="12dp"
+                android:text="Food List"
+
+                android:textSize="20sp"
+
+                tools:ignore="MissingConstraints" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recipesListRV"
+                android:layout_width="393dp"
+                android:layout_height="446dp"
+                android:layout_below="@+id/txtListaIngre"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="11dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtListaIngre"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBarRecipes"
+                android:layout_width="95dp"
+                android:layout_height="59dp"
+                android:layout_alignStart="@+id/recipesListRV"
+                android:layout_alignTop="@+id/recipesListRV"
+                android:layout_alignEnd="@+id/recipesListRV"
+                android:layout_alignBottom="@+id/recipesListRV"
+                android:layout_marginStart="129dp"
+                android:layout_marginTop="186dp"
+                android:layout_marginEnd="141dp"
+                android:layout_marginBottom="182dp"
+                android:indeterminate="true"
+                android:theme="@style/Widget.MaterialComponents.CircularProgressIndicator.Medium"
+                app:indicatorColor="@android:color/holo_orange_dark"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintVertical_bias="0.518" />
+
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
