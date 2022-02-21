@@ -5,9 +5,10 @@ import com.example.appcocina.data.database.entidades.User
 class UsersUseCase {
 
     private val usersDb = listOf<User>(
-        User("gadiazr", "G1234"),
-        User("dalmeidam", "D4321")
+        User("gadiazr@uce.edu.ec", "g1234"),
+        User("dalmeidam@uce.edu.ec", "d4321")
         )
+
     fun getEmailAndPass(email: String, pass: String): User {
         var us = User()
 

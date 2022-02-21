@@ -6,8 +6,8 @@ import com.example.appcocina.logica.UserBL
 class UserController {
     fun LoginUser(email: String, pass: String): Boolean {
         return UserBL().LoginUser(
-            email.trim(),
-            pass.trim()
+            email.trim().lowercase(),
+            pass.trim().lowercase()
         )
     }
 

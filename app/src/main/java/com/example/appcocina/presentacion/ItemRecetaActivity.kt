@@ -9,6 +9,7 @@ import com.example.appcocina.R
 import com.example.appcocina.controladores.RecipesController
 import com.example.appcocina.data.database.entidades.Recipes
 import com.example.appcocina.databinding.ActivityItemRecetaBinding
+import com.example.appcocina.logica.RecipesBL
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 import kotlinx.serialization.decodeFromString
@@ -53,8 +54,15 @@ class ItemRecetaActivity : AppCompatActivity() {
             binding.txtIngredientes.text = detalle.ingre
             binding.txtPasos.text = detalle.pasos
             Picasso.get().load(detalle.img).into(binding.imgReceta)
+
+            fav = withContext(Dispatchers.IO) { RecipesBL().checkIsSaved(recipeEntity.id) }
+            if (fav) {
+                binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)
+            }
+
             binding.progressBarDetailRecipe.visibility = View.GONE
         }
+
     }
 
     private fun saveFavRecipes(recipes: Recipes?) {
@@ -63,11 +71,13 @@ class ItemRecetaActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     RecipesController().saveFavRecipes(recipes)
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)
+                    fav = true
                 }
             } else {
                 lifecycleScope.launch {
                     RecipesController().deleteFavRecipes(recipes)
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_border_12)
+                    fav = false
                 }
             }
         }
