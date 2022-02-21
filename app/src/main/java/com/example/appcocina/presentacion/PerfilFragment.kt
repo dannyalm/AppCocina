@@ -31,7 +31,7 @@ class PerfilFragment : Fragment() {
         TabLayoutMediator(binding.tabLayout,binding.viewPager2){tab,position->
             when(position){
                 0->{
-                    tab.text="Mis Listas"
+                    tab.text="Recetas Guardadas"
                 }
                 1->{
                     tab.text="Mis Recetas"

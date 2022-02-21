@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.appcocina.controladores.RecipesController
 import com.example.appcocina.controladores.adapters.RecipesAdapter
 import com.example.appcocina.data.database.entidades.Categories
 import com.example.appcocina.data.database.entidades.Recipes
 import com.example.appcocina.databinding.ActivityFilterCategoryBinding
-import com.example.appcocina.logica.RecipesBL
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 import kotlinx.serialization.decodeFromString
@@ -53,7 +53,7 @@ class FilterCategoryActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.Main)
         {
             val items = withContext(Dispatchers.IO) {
-                RecipesBL().getRecipesList(categoriesEntity.nombre.toString())
+                RecipesController().getRecipesByCategory(categoriesEntity.nombre.toString())
             }
             binding.recipesListRV.layoutManager =
                 LinearLayoutManager(binding.recipesListRV.context)
@@ -69,8 +69,6 @@ class FilterCategoryActivity : AppCompatActivity() {
         i.putExtra("receta", jsonString)
         startActivity(i)
     }
-
-
 
 
 }

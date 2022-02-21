@@ -9,10 +9,4 @@ class IngredientsBL {
         return IngredientsUseCase().getAllIngredients()
     }
 
-    //En caso que solo se quiera un ingrediente
-    suspend fun getOneIngredients(): Ingredients {
-        val r = (0..3).random()
-        return IngredientsUseCase().getAllIngredients()[r]
-
-    }
 }

@@ -8,13 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.appcocina.controladores.CategoriesController
 import com.example.appcocina.controladores.adapters.CategoriesAdapter
-import com.example.appcocina.controladores.adapters.IngredientsAdapter
-import com.example.appcocina.controladores.adapters.RecipesAdapter
 import com.example.appcocina.data.database.entidades.Categories
 import com.example.appcocina.databinding.FragmentHomeBinding
-import com.example.appcocina.logica.CategoriesBL
-import com.example.appcocina.logica.RecipesBL
 import kotlinx.coroutines.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -52,7 +49,7 @@ class HomeFragment : Fragment() {
         {
 
             val items = withContext(Dispatchers.IO) {
-                CategoriesBL().getCategoriesList()
+                CategoriesController().getCategories()
             }
             binding.categoriesListRV.layoutManager =
                 LinearLayoutManager(binding.categoriesListRV.context)

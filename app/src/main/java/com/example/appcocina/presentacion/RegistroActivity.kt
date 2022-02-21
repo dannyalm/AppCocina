@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.example.appcocina.R
 import com.example.appcocina.databinding.ActivityLoginBinding
 import com.example.appcocina.databinding.ActivityRegistroBinding
@@ -29,6 +30,7 @@ class RegistroActivity : AppCompatActivity() {
             }
             else {
                 binding.emailField.error = null
+                Toast.makeText(this, "Su cuenta ha sido creada con éxito.", Toast.LENGTH_LONG).show()
                 var intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
 
