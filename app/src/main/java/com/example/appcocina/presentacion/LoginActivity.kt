@@ -2,6 +2,8 @@ package com.example.appcocina.presentacion
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -20,13 +22,22 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        //Ocultar la barra
-        //window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        // Remember that you should never show the action bar if the
-        // status bar is hidden, so hide that too if necessary.
-        //actionBar?.hide()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+        }
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            MainActivity.setWindowFlag(
+                this,
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                false
+            )
+            window.statusBarColor = Color.TRANSPARENT
+        }
 
 
         binding.txtSignUp.setOnClickListener(){

@@ -63,8 +63,6 @@ class ItemRecetaActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     RecipesController().saveFavRecipes(recipes)
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)
-                    //ojo
-                    fav = true
                 }
             } else {
                 lifecycleScope.launch {

@@ -19,28 +19,28 @@ class PrincipalActivity : AppCompatActivity() {
         binding = ActivityPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadFragment(HomeFragment())
+        changeFragment(R.id.itHome,HomeFragment())
         lstFragments.add(R.id.itHome)
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.itHome -> {
-                    loadFragment(HomeFragment())
+                    changeFragment(R.id.itHome,HomeFragment())
                     lstFragments.add(R.id.itHome)
                     true
                 }
                 R.id.itBusqueda -> {
-                    loadFragment(BusquedaFragment())
+                    changeFragment(R.id.itBusqueda,BusquedaFragment())
                     lstFragments.add(R.id.itBusqueda)
                     true
                 }
                 R.id.itCrearReceta -> {
-                    loadFragment(CrearRecetaFragment())
+                    changeFragment(R.id.itCrearReceta,CrearRecetaFragment())
                     lstFragments.add(R.id.itCrearReceta)
                     true
                 }
                 R.id.itPerfil -> {
-                    loadFragment(PerfilFragment())
+                    changeFragment(R.id.itPerfil,PerfilFragment())
                     lstFragments.add(R.id.itPerfil)
                     true
                 }
@@ -60,18 +60,56 @@ class PrincipalActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    private fun loadFragment(fragment : Fragment){
-        supportFragmentManager.beginTransaction().apply {
-            replace(binding.FrameLayout.id, fragment)
-            addToBackStack(null)
-        }.commit()
+    private fun changeFragment(tagToChange: Int, fragment: Fragment? = null) {
+        var addStack: Boolean = false
+        val ft = supportFragmentManager.beginTransaction()
+
+        if (lstFragments.isNotEmpty()) {
+            val currentFragment =
+                supportFragmentManager.findFragmentByTag(lstFragments.last().toString())!!
+            val toChangeFragment = supportFragmentManager.findFragmentByTag(tagToChange.toString())
+            currentFragment.onPause()
+
+            if (toChangeFragment != null) {
+                if (currentFragment != toChangeFragment) {
+                    addStack = true
+                    ft.setCustomAnimations(
+                        R.anim.fade_in,
+                        R.anim.fade_out
+                    );
+                    ft.hide(currentFragment).show(toChangeFragment)
+                    toChangeFragment.onResume()
+                }
+            } else {
+                if (fragment != null) {
+                    addStack = true
+                    ft.setCustomAnimations(
+                        R.anim.fade_in,
+                        R.anim.fade_out
+                    );
+                    ft.hide(currentFragment)
+                        .add(binding.FrameLayout.id, fragment, tagToChange.toString())
+                }
+            }
+        } else {
+            if (fragment != null) {
+                ft.add(binding.FrameLayout.id, fragment, tagToChange.toString())
+                addStack = true
+            }
+        }
+
+        if (addStack) {
+            ft.commit()
+            ft.addToBackStack(tagToChange.toString())
+            lstFragments.add(tagToChange)
+        }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        lstFragments.removeLast()
-        if (lstFragments.isNotEmpty()) {
-            binding.bottomNavigation.menu.findItem(lstFragments.last()).setChecked(true)
+        if (lstFragments.size > 1) {
+            lstFragments.removeLast()
+            binding.bottomNavigation.menu.findItem(lstFragments.last()).isChecked = true
         }
     }
 }
