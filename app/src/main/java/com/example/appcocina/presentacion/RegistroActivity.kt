@@ -10,9 +10,15 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.example.appcocina.R
+import com.example.appcocina.controladores.UserController
+import com.example.appcocina.data.database.entidades.Recipes
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityLoginBinding
 import com.example.appcocina.databinding.ActivityRegistroBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class RegistroActivity : AppCompatActivity() {
 
@@ -42,11 +48,32 @@ class RegistroActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btnRegistrar.setOnClickListener() {
-            if (binding.txtEmail.text.toString().trim() == "") { //Elimino espacios en blanco
-                binding.emailField.error = getString(R.string.errorEmail)
+            if (binding.txtEmail.text.toString().trim() == "" && binding.txtPassword.text.toString().trim() == "") { //Elimino espacios en blanco
+                binding.emailField.error = "Ingrese un correo"
+                binding.passwordField.error = "Ingrese una contraseña"
             }
             else {
                 binding.emailField.error = null
+                binding.passwordField.error = null
+
+                var correo = binding.txtEmail.text.toString().trim().lowercase()
+                var contrasena = binding.txtPassword.text.toString().trim().lowercase()
+                var nombre = binding.txtUsuario.text.toString().trim().lowercase()
+                var apellido = binding.txtApellido.text.toString().trim().lowercase()
+
+                lifecycleScope.launch(Dispatchers.Main)
+                {
+                    var us: User? = null
+
+                    //ojo aqui, para el autoincrementable
+                    us = User(1, correo, contrasena, nombre, apellido, null, null)
+
+                    if (us != null) {
+                        UserController().registerUser(us)
+                        println(us)
+                    }
+                }
+
                 Toast.makeText(this, "Su cuenta ha sido creada con éxito.", Toast.LENGTH_LONG).show()
                 var intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)

@@ -8,12 +8,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.lifecycle.lifecycleScope
 import com.example.appcocina.R
+import com.example.appcocina.casosUso.UsersUseCase
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var a: List<User>
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -35,6 +41,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener() {
+            lifecycleScope.launch(Dispatchers.Main)
+            {
+                a = UsersUseCase().getAllUsers()
+                println(a)
+            }
             var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

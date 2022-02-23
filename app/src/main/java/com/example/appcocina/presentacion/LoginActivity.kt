@@ -11,13 +11,16 @@ import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.example.appcocina.R
 import com.example.appcocina.controladores.UserController
 import com.example.appcocina.databinding.ActivityLoginBinding
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private var access: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -47,10 +50,12 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnIniciarSesion.setOnClickListener() {
 
-            val access = UserController().LoginUser(
-                binding.txtEmail.text.toString(),
-                binding.txtPassword.text.toString()
-            )
+            lifecycleScope.launch {
+                access = UserController().LoginUser(
+                    binding.txtEmail.text.toString(),
+                    binding.txtPassword.text.toString()
+                )
+            }
 
             if (access) {
                 binding.emailField.error = getString(R.string.errorEmail)

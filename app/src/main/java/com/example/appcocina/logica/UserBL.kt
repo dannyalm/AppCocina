@@ -1,22 +1,18 @@
 package com.example.appcocina.logica
 
+import com.example.appcocina.casosUso.RecipesUseCase
 import com.example.appcocina.casosUso.UsersUseCase
+import com.example.appcocina.data.database.entidades.Recipes
 import com.example.appcocina.data.database.entidades.User
 
 class UserBL {
 
-    fun LoginUser(email: String, pass: String): Boolean {
+    suspend fun LoginUser(email: String, pass: String): Boolean {
         var us = UsersUseCase().getEmailAndPass(email, pass)
-        return (us.id == "-1L")
+        return us == null
     }
 
-    fun getUserList():List<User>{
-        return UsersUseCase().getAllUsers()
-    }
-
-    fun getOneUser(): User {
-        val r = (0)
-        return UsersUseCase().getAllUsers()[r]
-
+    suspend fun saveRegisterUser (user: User) {
+        UsersUseCase().saveUsers(user)
     }
 }

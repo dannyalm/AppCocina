@@ -1,26 +1,27 @@
 package com.example.appcocina.casosUso
 
 import com.example.appcocina.data.database.entidades.User
+import com.example.appcocina.utils.AppCocina
 
 class UsersUseCase {
 
-    private val usersDb = listOf<User>(
-        User("gadiazr@uce.edu.ec", "g1234"),
-        User("dalmeidam@uce.edu.ec", "d4321")
-        )
-
-    fun getEmailAndPass(email: String, pass: String): User {
-        var us = User()
-
-        usersDb.forEach() {
-            if (it.correo == email && it.password == pass) {
-                us = it
-            }
-        }
-        return us
+    suspend fun getAllUsers():List<User>{
+        return AppCocina.getDatabase().usersDao().getAllUsers()
     }
 
-    fun getAllUsers():List<User>{
-        return usersDb
+    suspend fun getEmailAndPass(email: String, pass: String): User {
+        return AppCocina.getDatabase().usersDao().loginUser(email, pass)
+    }
+
+    suspend fun saveUsers(users: User) {
+        AppCocina.getDatabase().usersDao().insertUsers(users)
+    }
+
+    suspend fun deleteUsers(users: User) {
+        AppCocina.getDatabase().usersDao().deleteUsersById(users.id)
+    }
+
+    suspend fun getOneUser(id: Int): User {
+        return AppCocina.getDatabase().usersDao().getUsersById(id)
     }
 }
