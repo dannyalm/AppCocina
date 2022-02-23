@@ -11,8 +11,9 @@ data class Recipes(
     val id: String,
     val nombre: String?,
     var img: String?,
-    val dir: String?,
-    val vid: String?,
-    val ingre: String?,
+    val direccion: String?,
+    val video: String?,
+    val ingredientes: String?,
+    val cantidad: String?,
     val pasos: String?
 )

@@ -1,6 +1,7 @@
 package com.example.appcocina.presentacion
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -51,9 +52,23 @@ class ItemRecetaActivity : AppCompatActivity() {
         {
             detalle = RecipesController().getDetailsOneRecipe(recipeEntity.id.toString()).get(0)
             binding.txtNombreReceta.text = detalle.nombre
-            binding.txtIngredientes.text = detalle.ingre
             binding.txtPasos.text = detalle.pasos
             Picasso.get().load(detalle.img).into(binding.imgReceta)
+
+            //Video
+            binding.txtYoutube.setOnClickListener() {
+                val intentYoutube = Intent(Intent.ACTION_VIEW)
+                intentYoutube.data = Uri.parse(detalle.video)
+                startActivity(intentYoutube)
+            }
+
+            //Link
+            binding.txtSource.setOnClickListener(){
+                val intentSource = Intent(Intent.ACTION_VIEW)
+                intentSource.data = Uri.parse(detalle.direccion)
+                startActivity(intentSource)
+            }
+
 
             fav = withContext(Dispatchers.IO) { RecipesBL().checkIsSaved(recipeEntity.id) }
             if (fav) {
