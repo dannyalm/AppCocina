@@ -8,13 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import androidx.lifecycle.lifecycleScope
 import com.example.appcocina.R
-import com.example.appcocina.casosUso.UsersUseCase
-import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 

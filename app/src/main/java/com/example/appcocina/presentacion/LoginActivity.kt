@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private var access: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -51,23 +50,21 @@ class LoginActivity : AppCompatActivity() {
         binding.btnIniciarSesion.setOnClickListener() {
 
             lifecycleScope.launch {
-                access = UserController().LoginUser(
+                var access = UserController().LoginUser(
                     binding.txtEmail.text.toString(),
                     binding.txtPassword.text.toString()
                 )
+                if (access) {
+                    binding.emailField.error = getString(R.string.errorEmail)
+                    binding.passwordField.error = getString(R.string.errorPassword)
+                }
+                else {
+                    binding.emailField.error = null
+                    binding.passwordField.error = null
+                    iniciarSesion()
+                }
             }
 
-            if (access) {
-                binding.emailField.error = getString(R.string.errorEmail)
-                binding.passwordField.error = getString(R.string.errorPassword)
-            }
-            else {
-                binding.emailField.error = null
-                binding.passwordField.error = null
-                var intent = Intent(this, PrincipalActivity::class.java)
-                startActivity(intent)
-
-            }
         }
 
         binding.txtForgotPassword.setOnClickListener(){
@@ -84,6 +81,11 @@ class LoginActivity : AppCompatActivity() {
         val imm =
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun iniciarSesion() {
+        var intent = Intent(this, PrincipalActivity::class.java)
+        startActivity(intent)
     }
 
 }
