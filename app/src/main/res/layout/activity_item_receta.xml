@@ -261,6 +261,44 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.506" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txtGusto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="15dp"
+                                android:text="Did you like the recipe?"
+                                android:layout_gravity="center"
+                                android:textSize="18sp" />
+
+                            <RatingBar
+                                android:id="@+id/ratingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:rating="4"
+                                android:progressBackgroundTint="@color/white"
+                                android:progressTint="#ffdf00"
+                                android:stepSize="1.0"
+                                android:textAlignment="center" />
+
+                            <TextView
+                                android:id="@+id/txtRating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="15dp"
+                                android:layout_gravity="center"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+
+
                     </LinearLayout>
                 </LinearLayout>
             </FrameLayout>

@@ -68,4 +68,5 @@ class FilterIngredientActivity : AppCompatActivity() {
         startActivity(i)
     }
 
+
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".presentacion.FilterIngredientActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -47,7 +48,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="650dp">
+            android:layout_height="650dp"
+            android:fitsSystemWindows="true">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvDetailIngredients"

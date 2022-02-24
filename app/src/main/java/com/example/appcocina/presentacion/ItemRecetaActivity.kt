@@ -1,6 +1,7 @@
 package com.example.appcocina.presentacion
 
 import android.content.Intent
+import android.icu.text.DisplayContext
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -43,7 +44,25 @@ class ItemRecetaActivity : AppCompatActivity() {
             saveFavRecipes(n)
         }
 
+        binding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+
+            if (rating == 1f){
+                binding.txtRating.setText("Bad")
+            }else if (rating == 2f){
+                binding.txtRating.setText("Neither good nor bad")
+            }else if (rating == 3f){
+                binding.txtRating.setText("Good")
+            }else if (rating == 4f){
+                binding.txtRating.setText("Delicius")
+            }else{
+                binding.txtRating.setText("I love it")
+            }
+
+        }
+
     }
+
+
 
     private fun loadRecipe(recipeEntity: Recipes) {
 
