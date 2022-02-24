@@ -65,12 +65,10 @@ class RegistroActivity : AppCompatActivity() {
                 {
                     var us: User? = null
 
-                    //ojo aqui, para el autoincrementable
-                    us = User(1, correo, contrasena, nombre, apellido, null, null)
+                    us = User(correo, contrasena, nombre, apellido, null, null)
 
                     if (us != null) {
                         UserController().registerUser(us)
-                        println(us)
                     }
                 }
 

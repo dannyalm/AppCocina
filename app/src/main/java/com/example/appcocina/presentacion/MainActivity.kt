@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var a: List<User>
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -41,11 +40,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener() {
-            lifecycleScope.launch(Dispatchers.Main)
-            {
-                a = UsersUseCase().getAllUsers()
-                println(a)
-            }
             var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

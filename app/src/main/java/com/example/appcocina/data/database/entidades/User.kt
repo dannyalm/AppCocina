@@ -1,5 +1,6 @@
 package com.example.appcocina.data.database.entidades
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.serialization.Serializable
@@ -8,8 +9,6 @@ import java.util.*
 @Entity(tableName = "users")
 @Serializable
 data class User(
-    @PrimaryKey (autoGenerate = true)
-    var id: Int=0,
     var correo: String?,
     var contrasena: String?,
     var nombre: String?,
@@ -18,6 +17,8 @@ data class User(
     var img: String?)
 
 {
+    @PrimaryKey(autoGenerate = true)
+    var id = 0
 
     init {
         if (this.img == null) {
