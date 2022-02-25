@@ -9,7 +9,7 @@
         <entry key="..\:/Users/danie/Desktop/OptativaIII/AppCocina/AppCocina/app/src/main/res/layout/activity_registro.xml" value="0.22" />
         <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/drawable/bg_circle_radius_primary.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/drawable/ic_receta_24.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_filter_category.xml" value="0.1" />
+        <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_filter_category.xml" value="0.22" />
         <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_filter_ingredient.xml" value="0.16485507246376813" />
         <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_item_receta.xml" value="0.1644021739130435" />
         <entry key="..\:/Users/danie/Documents/GitHub/AppCocina/app/src/main/res/layout/activity_login.xml" value="0.1644021739130435" />
@@ -29,6 +29,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/drawable/ic_lock_24.xml" value="0.2203125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/drawable/ic_user_24.xml" value="0.2203125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/drawable/splash_screen.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_filter_ingredient.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_item_receta.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/AppCocina/app/src/main/res/layout/activity_main.xml" value="0.22" />

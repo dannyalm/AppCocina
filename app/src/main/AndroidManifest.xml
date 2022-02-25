@@ -14,7 +14,6 @@
         android:theme="@style/Theme.AppCocina">
         <activity
             android:name=".presentacion.FilterIngredientActivity"
-            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".presentacion.ItemRecetaActivity"
@@ -24,9 +23,11 @@
             android:exported="false" />
         <activity
             android:name=".presentacion.PrincipalActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".presentacion.RegistroActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".presentacion.LoginActivity"
