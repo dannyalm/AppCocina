@@ -16,4 +16,11 @@ class UserController {
         UserBL().saveRegisterUser(user)
     }
 
+    suspend fun getLoginUser(email: String, pass: String): User {
+        return UserBL().getLoginUser(
+            email.trim().lowercase(),
+            pass.trim().lowercase()
+        )
+    }
+
 }

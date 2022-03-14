@@ -1,5 +1,6 @@
 package com.example.appcocina.presentacion
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
 import com.example.appcocina.controladores.adapters.ViewPagerAdapter
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.FragmentPerfilBinding
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 class PerfilFragment : Fragment() {
 
@@ -24,6 +29,25 @@ class PerfilFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        var us: User? = null
+        activity!!.intent.extras?.let {
+            us = Json.decodeFromString<User>(it.getString("usuario").toString())
+        }
+        if (us != null) {
+            loadInformation(us!!)
+        }
+
+        binding.btnEdit.setOnClickListener(){
+            editarPerfil(us!!)
+        }
+
+        binding.btnLogout.setOnClickListener(){
+            val intent = Intent(activity, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent)
+        }
+
         val adapter= ViewPagerAdapter(childFragmentManager,lifecycle)
 
         binding.viewPager2.adapter=adapter
@@ -38,6 +62,21 @@ class PerfilFragment : Fragment() {
                 }
             }
         }.attach()
+
+
+    }
+
+    fun loadInformation(user: User) {
+        binding.textNombre.text = user.nombre
+        binding.textApellido.text = user.apellido
+        binding.txtCorreo.text = user.correo
+    }
+
+    fun editarPerfil(user: User) {
+        var intent = Intent(activity, EditarPerfilActivity::class.java)
+        val jsonString = Json.encodeToString(user)
+        intent.putExtra("usuario", jsonString)
+        startActivity(intent)
     }
 
 }

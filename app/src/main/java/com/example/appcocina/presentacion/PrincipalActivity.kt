@@ -1,13 +1,18 @@
 package com.example.appcocina.presentacion
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import com.example.appcocina.R
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityPrincipalBinding
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -18,6 +23,14 @@ class PrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        var us: User? = null
+        intent.extras?.let {
+            us = Json.decodeFromString<User>(it.getString("usuario").toString())
+        }
+        if (us != null) {
+            passUser(us!!)
+        }
 
         changeFragment(R.id.itHome,HomeFragment())
         lstFragments.add(R.id.itHome)
@@ -111,5 +124,11 @@ class PrincipalActivity : AppCompatActivity() {
             lstFragments.removeLast()
             binding.bottomNavigation.menu.findItem(lstFragments.last()).isChecked = true
         }
+    }
+
+    fun passUser(user: User) {
+        var intent = Intent(this, PerfilFragment::class.java)
+        val jsonString = Json.encodeToString(user)
+        intent.putExtra("usuario", jsonString)
     }
 }

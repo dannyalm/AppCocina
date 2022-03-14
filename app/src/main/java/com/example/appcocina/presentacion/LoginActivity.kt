@@ -14,8 +14,12 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.appcocina.R
 import com.example.appcocina.controladores.UserController
+import com.example.appcocina.data.database.entidades.Ingredients
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityLoginBinding
 import kotlinx.coroutines.launch
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 class LoginActivity : AppCompatActivity() {
 
@@ -54,6 +58,12 @@ class LoginActivity : AppCompatActivity() {
                     binding.txtEmail.text.toString(),
                     binding.txtPassword.text.toString()
                 )
+
+                var user = UserController().getLoginUser(
+                    binding.txtEmail.text.toString(),
+                    binding.txtPassword.text.toString()
+                )
+
                 if (access) {
                     binding.emailField.error = getString(R.string.errorEmail)
                     binding.passwordField.error = getString(R.string.errorPassword)
@@ -61,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
                 else {
                     binding.emailField.error = null
                     binding.passwordField.error = null
-                    iniciarSesion()
+                    iniciarSesion(user)
                 }
             }
 
@@ -83,8 +93,10 @@ class LoginActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    fun iniciarSesion() {
+    fun iniciarSesion(user: User) {
         var intent = Intent(this, PrincipalActivity::class.java)
+        val jsonString = Json.encodeToString(user)
+        intent.putExtra("usuario", jsonString)
         startActivity(intent)
     }
 

@@ -15,4 +15,11 @@ class UserBL {
     suspend fun saveRegisterUser (user: User) {
         UsersUseCase().saveUsers(user)
     }
+
+
+    suspend fun getLoginUser(email: String, pass: String): User {
+        var us = UsersUseCase().getEmailAndPass(email, pass)
+        return us
+    }
+
 }

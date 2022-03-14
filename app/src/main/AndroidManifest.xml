@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCocina">
         <activity
+            android:name=".presentacion.EditarPerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentacion.FilterIngredientActivity"
             android:exported="false" />
         <activity
@@ -23,12 +26,12 @@
             android:exported="false" />
         <activity
             android:name=".presentacion.PrincipalActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentacion.RegistroActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentacion.LoginActivity"
             android:exported="false" />
