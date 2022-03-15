@@ -23,4 +23,8 @@ class UserController {
         )
     }
 
+    suspend fun updateUser (user: User) {
+        UserBL().updateRegisterUser(user)
+    }
+
 }

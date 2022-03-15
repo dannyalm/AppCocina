@@ -3,6 +3,8 @@
     package="com.example.appcocina">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".utils.AppCocina"
@@ -14,7 +16,8 @@
         android:theme="@style/Theme.AppCocina">
         <activity
             android:name=".presentacion.EditarPerfilActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentacion.FilterIngredientActivity"
             android:exported="false" />

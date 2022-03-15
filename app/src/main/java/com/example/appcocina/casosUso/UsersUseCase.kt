@@ -17,6 +17,10 @@ class UsersUseCase {
         AppCocina.getDatabase().usersDao().insertUsers(users)
     }
 
+    suspend fun updateUsers(users: User) {
+        AppCocina.getDatabase().usersDao().updateUsers(users)
+    }
+
     suspend fun deleteUsers(users: User) {
         AppCocina.getDatabase().usersDao().deleteUsersById(users.id)
     }

@@ -22,7 +22,6 @@ import kotlinx.serialization.json.Json
 class BusquedaFragment : Fragment() {
 
     private lateinit var binding : FragmentBusquedaBinding
-    private var job: Job? = null
     private var items = ArrayList<Ingredients>()
 
     override fun onCreateView(

@@ -28,7 +28,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgPerfil"
                 android:layout_width="123dp"
                 android:layout_height="118dp"
@@ -36,7 +36,8 @@
                 android:layout_marginTop="36dp"
                 android:src="@drawable/foto_chef"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/textNombre"
@@ -74,8 +75,9 @@
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
-                android:src="@drawable/ic_share_24"
+                android:layout_marginStart="220dp"
+                android:backgroundTint="@color/design_default_color_background"
+                android:src="@drawable/ic_edit_24"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 tools:layout_editor_absoluteY="6dp" />
 
@@ -83,7 +85,8 @@
                 android:id="@+id/btnLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_back_24"
+                android:backgroundTint="@color/design_default_color_background"
+                android:src="@drawable/ic_exit_to_app_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btnEdit"
                 tools:layout_editor_absoluteY="6dp" />

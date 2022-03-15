@@ -22,4 +22,8 @@ class UserBL {
         return us
     }
 
+    suspend fun updateRegisterUser (user: User) {
+        UsersUseCase().updateUsers(user)
+    }
+
 }

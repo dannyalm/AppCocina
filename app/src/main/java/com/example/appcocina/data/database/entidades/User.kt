@@ -13,18 +13,12 @@ data class User(
     var contrasena: String?,
     var nombre: String?,
     var apellido: String?,
+    var edad: Int,
     var sexo: String?,
     var img: String?)
 
 {
     @PrimaryKey(autoGenerate = true)
     var id = 0
-
-    init {
-        if (this.img == null) {
-            this.img =
-                "https://cdn-icons-png.flaticon.com/512/1377/1377199.png"
-        }
-    }
 
 }

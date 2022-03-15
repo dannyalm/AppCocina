@@ -58,14 +58,14 @@ class RegistroActivity : AppCompatActivity() {
 
                 var correo = binding.txtEmail.text.toString().trim().lowercase()
                 var contrasena = binding.txtPassword.text.toString().trim().lowercase()
-                var nombre = binding.txtUsuario.text.toString().trim().lowercase()
-                var apellido = binding.txtApellido.text.toString().trim().lowercase()
+                var nombre = binding.txtUsuario.text.toString().trim()
+                var apellido = binding.txtApellido.text.toString().trim()
 
                 lifecycleScope.launch(Dispatchers.Main)
                 {
                     var us: User? = null
 
-                    us = User(correo, contrasena, nombre, apellido, null, null)
+                    us = User(correo, contrasena, nombre, apellido, 0, "", null)
 
                     if (us != null) {
                         UserController().registerUser(us)

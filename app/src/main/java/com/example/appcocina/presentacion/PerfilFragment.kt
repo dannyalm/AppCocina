@@ -1,6 +1,7 @@
 package com.example.appcocina.presentacion
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -70,6 +71,10 @@ class PerfilFragment : Fragment() {
         binding.textNombre.text = user.nombre
         binding.textApellido.text = user.apellido
         binding.txtCorreo.text = user.correo
+        if (user.img!=null){
+            val bitmap = BitmapFactory.decodeFile(user.img)
+            binding.imgPerfil?.setImageBitmap(bitmap)
+        }
     }
 
     fun editarPerfil(user: User) {
