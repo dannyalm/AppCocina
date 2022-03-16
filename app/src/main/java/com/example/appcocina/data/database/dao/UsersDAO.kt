@@ -9,7 +9,7 @@ interface UsersDAO {
     @Query("SELECT * FROM users")
     suspend fun getAllUsers(): List<User>
 
-    @Query("SELECT * FROM users WHERE id = :idUsers")
+    @Query("SELECT * FROM users WHERE id_User = :idUsers")
     suspend fun getUsersById(idUsers: Int): User
 
     @Query("SELECT * FROM users WHERE correo=:email AND contrasena=:password")
@@ -27,7 +27,7 @@ interface UsersDAO {
     @Query("DELETE FROM users")
     suspend fun cleanDbUsers()
 
-    @Query("DELETE FROM users WHERE id = :idUsers")
+    @Query("DELETE FROM users WHERE id_User = :idUsers")
     suspend fun deleteUsersById(idUsers: Int)
 
 }

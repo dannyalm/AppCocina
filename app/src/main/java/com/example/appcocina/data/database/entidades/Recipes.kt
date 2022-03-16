@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Recipes(
     @PrimaryKey()
-    val id: String,
+    val id_Recipes: String,
     val nombre: String?,
     var img: String?,
     val direccion: String?,

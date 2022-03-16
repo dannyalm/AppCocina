@@ -22,7 +22,7 @@ class UsersUseCase {
     }
 
     suspend fun deleteUsers(users: User) {
-        AppCocina.getDatabase().usersDao().deleteUsersById(users.id)
+        AppCocina.getDatabase().usersDao().deleteUsersById(users.id_User)
     }
 
     suspend fun getOneUser(id: Int): User {

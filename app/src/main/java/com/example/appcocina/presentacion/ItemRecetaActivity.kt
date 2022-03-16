@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.appcocina.R
 import com.example.appcocina.controladores.RecipesController
@@ -163,27 +164,38 @@ class ItemRecetaActivity : AppCompatActivity() {
         binding.progressBarDetailRecipe.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.Main)
         {
-            detalle = RecipesController().getDetailsOneRecipe(recipeEntity.id.toString()).get(0)
+            detalle = RecipesController().getDetailsOneRecipe(recipeEntity.id_Recipes.toString()).get(0)
             binding.txtNombreReceta.text = detalle.nombre
             binding.txtPasos.text = detalle.pasos
             Picasso.get().load(detalle.img).into(binding.imgReceta)
 
             //Video
+            if(detalle.video != "" && detalle.video != null){
             binding.txtYoutube.setOnClickListener() {
                 val intentYoutube = Intent(Intent.ACTION_VIEW)
                 intentYoutube.data = Uri.parse(detalle.video)
                 startActivity(intentYoutube)
             }
+            }else {
+                binding.txtYoutube.setOnClickListener() {
+                val toast = Toast.makeText(this@ItemRecetaActivity, "El video no está disponible", Toast.LENGTH_SHORT)
+                toast.show()
+            }}
 
             //Link
+            if(detalle.direccion != "" && detalle.direccion != null){
             binding.txtSource.setOnClickListener(){
                 val intentSource = Intent(Intent.ACTION_VIEW)
                 intentSource.data = Uri.parse(detalle.direccion)
                 startActivity(intentSource)
-            }
+            }}else {
+                binding.txtSource.setOnClickListener(){
+                val toast = Toast.makeText(this@ItemRecetaActivity, "La dirección no está disponible", Toast.LENGTH_SHORT)
+                toast.show()
+            }}
 
             //Favoritos
-            fav = withContext(Dispatchers.IO) { RecipesBL().checkIsSaved(recipeEntity.id) }
+            fav = withContext(Dispatchers.IO) { RecipesBL().checkIsSaved(recipeEntity.id_Recipes) }
             if (fav) {
                 binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)
             }

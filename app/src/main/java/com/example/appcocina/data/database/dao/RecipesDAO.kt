@@ -9,7 +9,7 @@ interface RecipesDAO {
     @Query("SELECT * FROM recipes")
     suspend fun getAllRecipes(): List<Recipes>
 
-    @Query("SELECT * FROM recipes WHERE id = :idRecipes")
+    @Query("SELECT * FROM recipes WHERE id_Recipes = :idRecipes")
     suspend fun getRecipesById(idRecipes: String): Recipes
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -24,7 +24,7 @@ interface RecipesDAO {
     @Query("DELETE FROM recipes")
     suspend fun cleanDbRecipes()
 
-    @Query("DELETE FROM recipes WHERE id = :idRecipes")
+    @Query("DELETE FROM recipes WHERE id_Recipes = :idRecipes")
     suspend fun deleteRecipesById(idRecipes: String)
 
 

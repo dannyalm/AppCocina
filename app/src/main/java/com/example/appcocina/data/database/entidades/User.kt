@@ -19,6 +19,6 @@ data class User(
 
 {
     @PrimaryKey(autoGenerate = true)
-    var id = 0
+    var id_User = 0
 
 }
