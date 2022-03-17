@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/editProfile"
+    android:id="@+id/createRecipe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentacion.EditarPerfilActivity">
+    tools:context=".presentacion.CrearRecetaActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -27,13 +27,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtEdidProfile"
+                    android:id="@+id/txtCreateRecipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="marquee"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:singleLine="true"
-                    android:text="Edit Profile"
+                    android:text="Create Recipe"
 
                     android:textSize="20sp" />
 
@@ -54,51 +54,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            android:layout_margin="10dp"
+            >
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="20dp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imagePerfil"
-                android:layout_width="150dp"
-                android:layout_height="170dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/foto_chef"
-                tools:ignore="MissingConstraints" />
-
-            <!--   <Button
-            android:id="@+id/btn1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="tomar" />-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageReceta"
+            android:layout_width="150dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/foto_comida"
+            tools:ignore="MissingConstraints" />
 
             <Button
                 android:id="@+id/btnCargar"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="67dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="180dp"
                 android:layout_marginTop="135dp"
+                android:layout_marginLeft="180dp"
                 app:icon="@drawable/ic_photo_35"
                 app:iconSize="40dp"
                 app:iconTint="@color/black" />
-            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
+    </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -111,16 +106,16 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/nombreField"
+                    android:id="@+id/recipeNameField"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
+                    android:hint="Recipe Name"
                     app:errorEnabled="true"
-                    app:startIconDrawable="@drawable/ic_user_24">
+                    app:startIconDrawable="@drawable/ic_receta_24">
 
                     <EditText
-                        android:id="@+id/txtUsuario"
+                        android:id="@+id/txtRecipeName"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:ems="10"
@@ -129,16 +124,16 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/apellidoField"
+                    android:id="@+id/ingredientsField"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Lastname"
+                    android:hint="Ingredientes"
                     app:errorEnabled="true"
-                    app:startIconDrawable="@drawable/ic_user_24">
+                    app:startIconDrawable="@drawable/ic_ingredients_24">
 
                     <EditText
-                        android:id="@+id/txtApellido"
+                        android:id="@+id/txtIngredients"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:ems="10"
@@ -146,77 +141,27 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <Button
+                    android:id="@+id/addButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add+"
+                    />
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edadField"
+                    android:id="@+id/measuresField"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Age"
+                    android:hint="Instructions"
                     app:errorEnabled="true"
-                    app:startIconDrawable="@drawable/ic_child_care_24">
+                    app:startIconDrawable="@drawable/ic_measure_24">
 
                     <EditText
-                        android:id="@+id/txtEdad"
+                        android:id="@+id/txtMeasures"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:ems="2"
-                        android:inputType="number"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:startIconDrawable="@drawable/ic_genero_24">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/txtGenero"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:hint="Gender"
-                        android:inputType="none" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/emailField"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="E-mail"
-                    app:errorEnabled="true"
-                    app:startIconDrawable="@drawable/ic_email_24">
-
-                    <EditText
-                        android:id="@+id/txtEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
+                        android:layout_height="match_parent"
                         android:ems="10"
-                        android:inputType="textEmailAddress"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/passwordField"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password"
-                    app:errorEnabled="true"
-                    app:startIconDrawable="@drawable/ic_lock_24">
-
-
-                    <EditText
-                        android:id="@+id/txtPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:ems="10"
-                        android:inputType="textPassword"
-                        android:minHeight="48dp"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -229,6 +174,8 @@
                     android:layout_marginTop="10dp"
                     android:text="SAVE"
                     android:textSize="20sp" />
+
+
             </LinearLayout>
         </ScrollView>
 

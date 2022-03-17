@@ -14,6 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCocina">
+<!--        <activity
+            android:name=".presentacion.CrearRecetaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />-->
         <activity
             android:name=".presentacion.EditarPerfilActivity"
             android:exported="false"

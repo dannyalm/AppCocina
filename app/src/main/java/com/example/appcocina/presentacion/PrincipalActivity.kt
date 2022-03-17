@@ -47,11 +47,11 @@ class PrincipalActivity : AppCompatActivity() {
                     lstFragments.add(R.id.itBusqueda)
                     true
                 }
-                R.id.itCrearReceta -> {
+/*                R.id.itCrearReceta -> {
                     changeFragment(R.id.itCrearReceta,CrearRecetaFragment())
                     lstFragments.add(R.id.itCrearReceta)
                     true
-                }
+                }*/
                 R.id.itPerfil -> {
                     changeFragment(R.id.itPerfil,PerfilFragment())
                     lstFragments.add(R.id.itPerfil)

@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appcocina.controladores.CategoriesController
 import com.example.appcocina.controladores.adapters.CategoriesAdapter
 import com.example.appcocina.data.database.entidades.Categories
+import com.example.appcocina.data.database.entidades.Recipes
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.FragmentHomeBinding
 import kotlinx.coroutines.*
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -28,6 +31,14 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+  override fun onStart() {
+      super.onStart()
+
+      binding.createButton.setOnClickListener() {
+          crearReceta()
+      }
+  }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,5 +77,10 @@ class HomeFragment : Fragment() {
         startActivity(i)
     }
 
+    fun crearReceta() {
+        var intent = Intent(activity, CrearRecetaActivity::class.java)
+        startActivity(intent)
+
+    }
 
 }

@@ -7,13 +7,13 @@
     <item
         android:id="@+id/itBusqueda"
         android:icon="@drawable/ic_search_24"
-        android:title="Búsqueda" />
-    <item
+        android:title="Search" />
+<!--    <item
         android:id="@+id/itCrearReceta"
         android:icon="@drawable/ic_receta_24"
-        android:title="Crear Receta" />
+        android:title="Crear Receta" />-->
     <item
         android:id="@+id/itPerfil"
         android:icon="@drawable/ic_email_24"
-        android:title="Perfil" />
+        android:title="Profile" />
 </menu>

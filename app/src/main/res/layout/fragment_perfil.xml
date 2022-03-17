@@ -6,6 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".presentacion.PerfilFragment">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/btnAtras"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtEdidProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:text="Profile"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,18 +47,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="370dp"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                android:text="Perfil"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgPerfil"
@@ -36,36 +58,56 @@
                 android:layout_marginTop="36dp"
                 android:src="@drawable/foto_chef"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8"
                 tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/textUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="User: "
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imgPerfil"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="24dp"
                 android:text="Gregory"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/imgPerfil"
+                app:layout_constraintStart_toEndOf="@+id/textUser"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textApellido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="24dp"
                 android:text="Díaz"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/textNombre"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/txtMail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="E-mail: "
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/textUser"
+                app:layout_constraintTop_toBottomOf="@+id/textUser" />
+
+            <TextView
                 android:id="@+id/txtCorreo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:text="gadiazr@hotmail.com"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/textNombre"
@@ -75,11 +117,15 @@
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="220dp"
                 android:backgroundTint="@color/design_default_color_background"
                 android:src="@drawable/ic_edit_24"
-                app:layout_constraintStart_toEndOf="@+id/textView8"
-                tools:layout_editor_absoluteY="6dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnLogout"
+                app:layout_constraintHorizontal_bias="0.979"
+                app:layout_constraintStart_toEndOf="@+id/imgPerfil"
+                app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
+                app:layout_constraintVertical_bias="0.142"
+                tools:ignore="MissingConstraints" />
 
             <ImageButton
                 android:id="@+id/btnLogout"
@@ -88,8 +134,8 @@
                 android:backgroundTint="@color/design_default_color_background"
                 android:src="@drawable/ic_exit_to_app_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnEdit"
-                tools:layout_editor_absoluteY="6dp" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
+                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

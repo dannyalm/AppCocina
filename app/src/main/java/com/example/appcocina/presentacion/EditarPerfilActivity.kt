@@ -84,11 +84,11 @@ class EditarPerfilActivity : AppCompatActivity(), AdapterView.OnItemClickListene
             startActivity(intent)
         }
 
-        binding.btn1.setOnClickListener {
-            capturePhoto()
-        }
+//        binding.btn1.setOnClickListener {
+//            capturePhoto()
+//        }
 
-        binding.btn2.setOnClickListener {
+        binding.btnCargar.setOnClickListener {
             val checkSelfPermission = ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
             if (checkSelfPermission != PackageManager.PERMISSION_GRANTED){
@@ -108,8 +108,6 @@ class EditarPerfilActivity : AppCompatActivity(), AdapterView.OnItemClickListene
 
     }
 
-
-
     fun loadInformation(user: User) {
         binding.txtUsuario.text = Editable.Factory.getInstance().newEditable(user.nombre)
         binding.txtApellido.text = Editable.Factory.getInstance().newEditable(user.apellido)
@@ -118,8 +116,6 @@ class EditarPerfilActivity : AppCompatActivity(), AdapterView.OnItemClickListene
         binding.txtEdad.text = Editable.Factory.getInstance().newEditable(user.edad.toString())
         binding.txtGenero.text = Editable.Factory.getInstance().newEditable(user.sexo)
         renderImage(user.img)
-
-
     }
 
     fun editUser(user: User) {
@@ -137,6 +133,7 @@ class EditarPerfilActivity : AppCompatActivity(), AdapterView.OnItemClickListene
             }
         }
     }
+
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         //Recuperamos el item seleccionado por su posición
         val item = parent?.getItemAtPosition(position).toString()
