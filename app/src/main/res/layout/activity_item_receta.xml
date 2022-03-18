@@ -53,8 +53,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_marginStart="-1dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -122,6 +123,20 @@
                         android:textSize="12sp" />
 
                 </androidx.cardview.widget.CardView>
+
+                <RatingBar
+                    android:id="@+id/ratingBarRecipe"
+                    style="@android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX=".8"
+                    android:scaleY=".8"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="0dp"
+                    android:progressBackgroundTint="@color/Secondarycolorapp"
+                    android:progressTint="@color/colorPrimaryapp"
+                    android:layout_marginTop="5dp"
+                    />
 
             </LinearLayout>
 
@@ -281,7 +296,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:rating="4"
                                 android:progressBackgroundTint="@color/white"
                                 android:progressTint="#ffdf00"
                                 android:stepSize="1.0"
