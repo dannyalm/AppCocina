@@ -7,9 +7,14 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.appcocina.R
+import com.example.appcocina.casosUso.RecipesUserUseCase
 import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityPrincipalBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -28,31 +33,34 @@ class PrincipalActivity : AppCompatActivity() {
         intent.extras?.let {
             us = Json.decodeFromString<User>(it.getString("usuario").toString())
         }
-        if (us != null) {
-            passUser(us!!)
-        }
 
+        passUser(us!!, HomeFragment())
         changeFragment(R.id.itHome,HomeFragment())
         lstFragments.add(R.id.itHome)
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.itHome -> {
+                    passUser(us!!, HomeFragment())
                     changeFragment(R.id.itHome,HomeFragment())
                     lstFragments.add(R.id.itHome)
                     true
                 }
                 R.id.itBusqueda -> {
+                    passUser(us!!, BusquedaFragment())
                     changeFragment(R.id.itBusqueda,BusquedaFragment())
                     lstFragments.add(R.id.itBusqueda)
                     true
                 }
 /*                R.id.itCrearReceta -> {
+                    passUser(us!!, CrearRecetaFragment())
                     changeFragment(R.id.itCrearReceta,CrearRecetaFragment())
                     lstFragments.add(R.id.itCrearReceta)
                     true
                 }*/
                 R.id.itPerfil -> {
+                    passUser(us!!, PerfilFragment())
+                    passUser(us!!, MisListasFragment())
                     changeFragment(R.id.itPerfil,PerfilFragment())
                     lstFragments.add(R.id.itPerfil)
                     true
@@ -126,8 +134,8 @@ class PrincipalActivity : AppCompatActivity() {
         }
     }
 
-    fun passUser(user: User) {
-        var intent = Intent(this, PerfilFragment::class.java)
+    fun passUser(user: User, fragment: Fragment) {
+        var intent = Intent(this, fragment::class.java)
         val jsonString = Json.encodeToString(user)
         intent.putExtra("usuario", jsonString)
     }

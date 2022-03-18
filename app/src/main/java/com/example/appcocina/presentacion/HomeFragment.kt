@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
   override fun onStart() {
@@ -43,15 +44,20 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadCategories()
+        var us: User? = null
+        activity!!.intent.extras?.let {
+            us = Json.decodeFromString<User>(it.getString("usuario").toString())
+        }
+
+        loadCategories(us!!.id_User)
 
         binding.swipeRefreshCategories.setOnRefreshListener {
-            loadCategories()
+            loadCategories(us!!.id_User)
             binding.swipeRefreshCategories.isRefreshing = false
         }
     }
 
-    fun loadCategories() {
+    fun loadCategories(idUs: Int) {
 
         binding.categoriesListRV.clearAnimation()
         binding.progressBarCategories.visibility = View.VISIBLE
@@ -64,23 +70,23 @@ class HomeFragment : Fragment() {
             }
             binding.categoriesListRV.layoutManager =
                 LinearLayoutManager(binding.categoriesListRV.context)
-            binding.categoriesListRV.adapter = CategoriesAdapter(items) { getCategoriesItem(it) }
+            binding.categoriesListRV.adapter = CategoriesAdapter(items) { getCategoriesItem(it, idUs) }
             binding.progressBarCategories.visibility = View.GONE
 
         }
     }
 
-    private fun getCategoriesItem(categoriesEntity: Categories) {
+    private fun getCategoriesItem(categoriesEntity: Categories, idUser: Int) {
         var i = Intent(activity, FilterCategoryActivity::class.java)
         val jsonString = Json.encodeToString(categoriesEntity)
         i.putExtra("categoria", jsonString)
+        i.putExtra("idUsuario", idUser)
         startActivity(i)
     }
 
     fun crearReceta() {
         var intent = Intent(activity, CrearRecetaActivity::class.java)
         startActivity(intent)
-
     }
 
 }

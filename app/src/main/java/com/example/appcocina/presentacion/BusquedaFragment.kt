@@ -14,8 +14,10 @@ import com.example.appcocina.controladores.adapters.IngredientsAdapter
 import com.example.appcocina.controladores.adapters.RecipesAdapter
 import com.example.appcocina.data.database.entidades.Ingredients
 import com.example.appcocina.data.database.entidades.Recipes
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.FragmentBusquedaBinding
 import kotlinx.coroutines.*
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -23,6 +25,7 @@ class BusquedaFragment : Fragment() {
 
     private lateinit var binding : FragmentBusquedaBinding
     private var items = ArrayList<Ingredients>()
+    var us: User? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +39,10 @@ class BusquedaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        activity!!.intent.extras?.let {
+            us = Json.decodeFromString<User>(it.getString("usuario").toString())
+        }
+
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -44,7 +51,7 @@ class BusquedaFragment : Fragment() {
                         it.nombre.toString().contains(query)
                     }
                     binding.ingredientsListRV.adapter =
-                        IngredientsAdapter(itemsFiltered) { getIngredientsItem(it) }
+                        IngredientsAdapter(itemsFiltered) { getIngredientsItem(it, us!!.id_User) }
                     binding.ingredientsListRV.layoutManager =
                         LinearLayoutManager(binding.ingredientsListRV.context)
                     println(items)
@@ -80,16 +87,15 @@ class BusquedaFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        loadIngredients()
-
+        loadIngredients(us!!.id_User)
         binding.swipeRefreshIngredients.setOnRefreshListener {
-            loadIngredients()
+            loadIngredients(us!!.id_User)
             binding.swipeRefreshIngredients.isRefreshing = false
         }
 
     }
 
-    fun loadIngredients() {
+    fun loadIngredients(idUs: Int) {
         binding.ingredientsListRV.clearAnimation()
         binding.progressBarIngredients.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.Main) {
@@ -98,15 +104,16 @@ class BusquedaFragment : Fragment() {
             } as ArrayList<Ingredients>
             binding.ingredientsListRV.layoutManager =
                 LinearLayoutManager(binding.ingredientsListRV.context)
-            binding.ingredientsListRV.adapter = IngredientsAdapter(items) { getIngredientsItem(it) }
+            binding.ingredientsListRV.adapter = IngredientsAdapter(items) { getIngredientsItem(it, idUs) }
             binding.progressBarIngredients.visibility = View.GONE
         }
     }
 
-    private fun getIngredientsItem(ingredientsEntity: Ingredients) {
+    private fun getIngredientsItem(ingredientsEntity: Ingredients, idUser: Int) {
         var i = Intent(activity, FilterIngredientActivity::class.java)
         val jsonString = Json.encodeToString(ingredientsEntity)
         i.putExtra("ingrediente", jsonString)
+        i.putExtra("idUsuario", idUser)
         startActivity(i)
     }
 

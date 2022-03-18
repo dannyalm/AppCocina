@@ -7,22 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.appcocina.R
 import com.example.appcocina.controladores.adapters.RecipesAdapter
 import com.example.appcocina.data.database.entidades.Recipes
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.FragmentMisListasBinding
-import com.example.appcocina.logica.RecipesBL
+import com.example.appcocina.logica.RecipesUserBL
 import kotlinx.coroutines.*
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+
+
+
 
 class MisListasFragment : Fragment() {
 
     private lateinit var binding : FragmentMisListasBinding
-    private var job: Job? = null
     private var items = ArrayList<Recipes>()
+    private var idUsuario: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +35,7 @@ class MisListasFragment : Fragment() {
     ): View? {
         binding = FragmentMisListasBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,10 +82,16 @@ class MisListasFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        var us: User? = null
+        activity!!.intent.extras?.let {
+            us = Json.decodeFromString<User>(it.getString("usuario").toString())
+        }
+
         binding.progressBarFav.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.Main) {
             items = withContext(Dispatchers.IO) {
-                RecipesBL().getFavoritesRecipes()
+                RecipesUserBL().getFavRecipesUser(us!!.id_User)
             } as ArrayList<Recipes>
             binding.listRecyclerViewFav.adapter =
                 RecipesAdapter(items) { getNewsItem(it) }
@@ -90,11 +102,10 @@ class MisListasFragment : Fragment() {
     }
 
     private fun getNewsItem(newsEntity: Recipes) {
-        var i = Intent(activity, ItemRecetaActivity::class.java)
+        val i = Intent(activity, ItemRecetaActivity::class.java)
         val jsonString = Json.encodeToString(newsEntity)
         i.putExtra("receta", jsonString)
         startActivity(i)
     }
-
 
 }

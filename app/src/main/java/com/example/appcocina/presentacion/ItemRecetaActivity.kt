@@ -1,7 +1,6 @@
 package com.example.appcocina.presentacion
 
 import android.content.Intent
-import android.icu.text.DisplayContext
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,8 +8,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.appcocina.R
+import com.example.appcocina.casosUso.RecipesUserUseCase
 import com.example.appcocina.controladores.RecipesController
 import com.example.appcocina.data.database.entidades.Recipes
+import com.example.appcocina.data.database.entidades.RecipesUserCroosRef
+import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityItemRecetaBinding
 import com.example.appcocina.logica.RecipesBL
 import com.squareup.picasso.Picasso
@@ -33,6 +35,9 @@ class ItemRecetaActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        var idUsuario = intent.extras?.getInt("idUsuario")
+        println(idUsuario)
+
         var n: Recipes? = null
         intent.extras?.let {
             n = Json.decodeFromString<Recipes>(it.getString("receta").toString())
@@ -42,7 +47,7 @@ class ItemRecetaActivity : AppCompatActivity() {
         }
 
         binding.floatingActionButtonItem.setOnClickListener() {
-            saveFavRecipes(n)
+            saveFavRecipes(n, idUsuario)
         }
 
         binding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
@@ -68,17 +73,20 @@ class ItemRecetaActivity : AppCompatActivity() {
 
     }
 
-    private fun saveFavRecipes(recipes: Recipes?) {
-        if (recipes != null) {
+    private fun saveFavRecipes(recipes: Recipes?, idUser: Int?) {
+        if (recipes != null && idUser != null) {
             if (!fav) {
+                var recipeUser = RecipesUserCroosRef(recipes.id_Recipes, idUser)
                 lifecycleScope.launch {
                     RecipesController().saveFavRecipes(recipes)
+                    RecipesUserUseCase().saveRecipesUser(recipeUser)
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)
                     fav = true
                 }
             } else {
                 lifecycleScope.launch {
                     RecipesController().deleteFavRecipes(recipes)
+                    RecipesUserUseCase().deleteRecipesUser(idUser)
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_border_12)
                     fav = false
                 }

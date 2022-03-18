@@ -30,19 +30,20 @@ class FilterCategoryActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        var idUsuario = intent.extras?.getInt("idUsuario")
 
         var n: Categories? = null
         intent.extras?.let {
             n = Json.decodeFromString<Categories>(it.getString("categoria").toString())
         }
         if (n != null) {
-            loadRecipes(n!!)
+            loadRecipes(n!!, idUsuario!!)
         }
 
 
     }
 
-    fun loadRecipes(categoriesEntity: Categories) {
+    fun loadRecipes(categoriesEntity: Categories, idUs: Int) {
         binding.txtNameCategory.text = categoriesEntity.nombre
         binding.txtDescripcion.text = categoriesEntity.descripcion
         Picasso.get().load(categoriesEntity.img).into(binding.imgCategoria)
@@ -57,16 +58,17 @@ class FilterCategoryActivity : AppCompatActivity() {
             }
             binding.recipesListRV.layoutManager =
                 LinearLayoutManager(binding.recipesListRV.context)
-            binding.recipesListRV.adapter = RecipesAdapter(items) { getRecipesItem(it) }
+            binding.recipesListRV.adapter = RecipesAdapter(items) { getRecipesItem(it, idUs) }
             binding.progressBarRecipes.visibility = View.GONE
 
         }
     }
 
-    private fun getRecipesItem(recipesEntity: Recipes) {
+    private fun getRecipesItem(recipesEntity: Recipes, idUser: Int) {
         var i = Intent(this, ItemRecetaActivity::class.java)
         val jsonString = Json.encodeToString(recipesEntity)
         i.putExtra("receta", jsonString)
+        i.putExtra("idUsuario", idUser)
         startActivity(i)
     }
 

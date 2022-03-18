@@ -9,17 +9,17 @@ data class Recipes_User_Relation(
     @Relation(
         parentColumn = "id_Recipes",
         entityColumn = "id_User",
-        associateBy = Junction(Recipes_User_CroosRef::class)
+        associateBy = Junction(RecipesUserCroosRef::class)
     )
-    val songs: List<User>
+    val users: List<User>
 )
 
 data class User_Recipes_Relation(
     @Embedded val user: User,
     @Relation(
-        parentColumn = "id_USer",
+        parentColumn = "id_User",
         entityColumn = "id_Recipes",
-        associateBy = Junction(Recipes_User_CroosRef::class)
+        associateBy = Junction(RecipesUserCroosRef::class)
     )
-    val playlists: List<Recipes>
+    val recipes: List<Recipes>
 )
