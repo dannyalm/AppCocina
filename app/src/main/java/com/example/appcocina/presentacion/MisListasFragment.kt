@@ -49,7 +49,7 @@ class MisListasFragment : Fragment() {
                         it.nombre.toString().contains(query)
                     }
                     binding.listRecyclerViewFav.adapter =
-                        RecipesAdapter(itemsFiltered) { getNewsItem(it) }
+                        RecipesAdapter(itemsFiltered) { getNewsItem(it, idUsuario) }
                     binding.listRecyclerViewFav.layoutManager =
                         LinearLayoutManager(binding.listRecyclerViewFav.context)
                 }
@@ -88,23 +88,26 @@ class MisListasFragment : Fragment() {
             us = Json.decodeFromString<User>(it.getString("usuario").toString())
         }
 
+        idUsuario = us!!.id_User
+
         binding.progressBarFav.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.Main) {
             items = withContext(Dispatchers.IO) {
                 RecipesUserBL().getFavRecipesUser(us!!.id_User)
             } as ArrayList<Recipes>
             binding.listRecyclerViewFav.adapter =
-                RecipesAdapter(items) { getNewsItem(it) }
+                RecipesAdapter(items) { getNewsItem(it, idUsuario) }
             binding.listRecyclerViewFav.layoutManager =
                 LinearLayoutManager(binding.listRecyclerViewFav.context)
             binding.progressBarFav.visibility = View.INVISIBLE
         }
     }
 
-    private fun getNewsItem(newsEntity: Recipes) {
+    private fun getNewsItem(newsEntity: Recipes, idUser: Int) {
         val i = Intent(activity, ItemRecetaActivity::class.java)
         val jsonString = Json.encodeToString(newsEntity)
         i.putExtra("receta", jsonString)
+        i.putExtra("idUsuario", idUser)
         startActivity(i)
     }
 

@@ -15,7 +15,12 @@ class RecipesUserUseCase {
         AppCocina.getDatabase().recipesUserDao().insertRecipesUser(recipesUser)
     }
 
-    suspend fun deleteRecipesUser(idUser: Int) {
-        AppCocina.getDatabase().recipesUserDao().deleteRecipesUser(idUser)
+    suspend fun deleteRecipesUser(idRecipe: String, idUser: Int) {
+        AppCocina.getDatabase().recipesUserDao().deleteRecipesUser(idRecipe, idUser)
     }
+
+    suspend fun getOneRecipeUser(idReceta: String, idUsuario: Int): RecipesUserCroosRef {
+        return AppCocina.getDatabase().recipesUserDao().getRecipesUserById(idReceta, idUsuario)
+    }
+
 }

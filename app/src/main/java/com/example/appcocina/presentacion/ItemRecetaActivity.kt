@@ -15,6 +15,7 @@ import com.example.appcocina.data.database.entidades.RecipesUserCroosRef
 import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityItemRecetaBinding
 import com.example.appcocina.logica.RecipesBL
+import com.example.appcocina.logica.RecipesUserBL
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 import kotlinx.serialization.decodeFromString
@@ -25,6 +26,7 @@ class ItemRecetaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityItemRecetaBinding
     private lateinit var detalle: Recipes
     private var fav: Boolean = false
+    private var idUsuario: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +37,7 @@ class ItemRecetaActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        var idUsuario = intent.extras?.getInt("idUsuario")
-        println(idUsuario)
+        idUsuario = intent.extras?.getInt("idUsuario")!!
 
         var n: Recipes? = null
         intent.extras?.let {
@@ -79,14 +80,14 @@ class ItemRecetaActivity : AppCompatActivity() {
                 var recipeUser = RecipesUserCroosRef(recipes.id_Recipes, idUser)
                 lifecycleScope.launch {
                     RecipesController().saveFavRecipes(recipes)
-                    RecipesUserUseCase().saveRecipesUser(recipeUser)
+                    RecipesUserBL().saveFavRecipesUser(recipeUser)
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)
                     fav = true
                 }
             } else {
                 lifecycleScope.launch {
+                    RecipesUserBL().deleteFavRecipesUser(recipes.id_Recipes, idUser)
                     RecipesController().deleteFavRecipes(recipes)
-                    RecipesUserUseCase().deleteRecipesUser(idUser)
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_border_12)
                     fav = false
                 }
@@ -203,7 +204,8 @@ class ItemRecetaActivity : AppCompatActivity() {
             }}
 
             //Favoritos
-            fav = withContext(Dispatchers.IO) { RecipesBL().checkIsSaved(recipeEntity.id_Recipes) }
+            println(idUsuario)
+            fav = withContext(Dispatchers.IO) { RecipesUserBL().checkIsSaved(recipeEntity.id_Recipes, idUsuario) }
             if (fav) {
                 binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)
             }
