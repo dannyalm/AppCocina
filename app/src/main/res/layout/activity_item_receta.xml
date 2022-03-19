@@ -136,6 +136,7 @@
                     android:progressBackgroundTint="@color/Secondarycolorapp"
                     android:progressTint="@color/colorPrimaryapp"
                     android:layout_marginTop="5dp"
+                    android:isIndicator="true"
                     />
 
             </LinearLayout>

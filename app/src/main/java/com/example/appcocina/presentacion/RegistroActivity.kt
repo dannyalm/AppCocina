@@ -6,7 +6,9 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -17,6 +19,7 @@ import com.example.appcocina.data.database.entidades.Recipes
 import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityLoginBinding
 import com.example.appcocina.databinding.ActivityRegistroBinding
+import com.example.appcocina.databinding.FragmentHomeBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -24,10 +27,22 @@ class RegistroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistroBinding
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistroBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.termsTxt.setOnClickListener() {
+           var intent = Intent(this,TermsActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.policiesTxt.setOnClickListener() {
+            var intent = Intent(this,PolicyActivity::class.java)
+            startActivity(intent)
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -90,4 +105,5 @@ class RegistroActivity : AppCompatActivity() {
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
 }

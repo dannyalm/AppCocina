@@ -82,7 +82,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
+            android:hint="Password"
             app:startIconDrawable="@drawable/ic_lock_24"
             app:errorEnabled="true">
 

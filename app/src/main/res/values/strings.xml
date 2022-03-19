@@ -2,11 +2,13 @@
     <string name="app_name">AppCocina</string>
     <string name="errorEmail">Email Incorrecto</string>
     <string name="errorPassword">Password Incorrecto</string>
+    <string name="privacyPolicies"><u><b>Privacy Policies</b></u></string>
+    <string name="terms"><u><b>Terms and Conditions,</b></u></string>
     <string-array name="generos">
-        <item>Femenino</item>
-        <item>Masculino</item>
-        <item>Otro</item>
-        <item>Prefiero no decirlo</item>
+        <item>Female</item>
+        <item>Male</item>
+        <item>Other</item>
+        <item>Prefer not to answer</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

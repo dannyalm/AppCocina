@@ -14,7 +14,6 @@
         tools:ignore="MissingConstraints">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/btnAtras"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/white">
@@ -24,15 +23,50 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtEdidProfile"
-                    android:layout_width="match_parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="370dp"
                     android:layout_height="wrap_content"
-                    android:ellipsize="marquee"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:singleLine="true"
-                    android:text="Profile"
-                    android:textSize="20sp" />
+                    android:layout_gravity="left"
+                    app:strokeWidth="0dp"
+                    app:strokeColor="@color/white"
+                    app:cardElevation="0dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/txtEdidProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Profile"
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:id="@+id/txtLogOut"
+                        android:layout_width="81dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="250dp"
+                        android:layout_marginTop="10dp"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
+                        android:text="Log Out"
+                        android:textSize="20sp" />
+
+                    <ImageButton
+                        android:id="@+id/btnLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/design_default_color_background"
+                        android:src="@drawable/ic_exit_to_app_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="MissingConstraints"
+                        android:layout_gravity="right" />
+
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -66,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
-                android:text="User: "
+                android:text="User "
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/imgPerfil"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -75,12 +109,12 @@
                 android:id="@+id/textNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:text="Gregory"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/textUser"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/imgPerfil"
+                app:layout_constraintTop_toTopOf="@+id/textUser" />
 
             <TextView
                 android:id="@+id/textApellido"
@@ -91,9 +125,9 @@
                 android:text="Díaz"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/textNombre"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/textUser" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/txtMail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -112,30 +146,45 @@
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/textNombre"
                 app:layout_constraintTop_toBottomOf="@+id/textNombre" />
+-->
 
-            <ImageButton
-                android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/design_default_color_background"
-                android:src="@drawable/ic_edit_24"
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                app:cardElevation="0dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginLeft="150dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnLogout"
-                app:layout_constraintHorizontal_bias="0.979"
-                app:layout_constraintStart_toEndOf="@+id/imgPerfil"
-                app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
-                app:layout_constraintVertical_bias="0.142"
-                tools:ignore="MissingConstraints" />
-
-            <ImageButton
-                android:id="@+id/btnLogout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/design_default_color_background"
-                android:src="@drawable/ic_exit_to_app_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/white"
+                app:strokeWidth="0dp">
+
+                <TextView
+                    android:id="@+id/textEditProfile"
+                    android:layout_width="109dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="65dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Edit Profile"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnEdit" />
+
+                <ImageButton
+                    android:id="@+id/btnEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:backgroundTint="@color/design_default_color_background"
+                    android:src="@drawable/ic_edit_24"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="323dp"
+                    tools:layout_editor_absoluteY="75dp" />
+
+            </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

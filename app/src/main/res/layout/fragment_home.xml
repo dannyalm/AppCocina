@@ -24,6 +24,19 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             tools:visibility="visible" />-->
 
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressBarCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:theme="@style/Widget.MaterialComponents.CircularProgressIndicator.Medium"
+            app:indicatorColor="@android:color/holo_orange_dark"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
@@ -70,7 +83,6 @@
                     style="?attr/materialButtonOutlinedStyle"
                     app:strokeWidth="2dp"
                     app:strokeColor="#a5a5a5"
-
                     />
             </androidx.cardview.widget.CardView>
 
@@ -90,6 +102,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,6 +124,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3">
 
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/categoriesListRV"
                         android:layout_width="339dp"
@@ -124,16 +138,6 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
-                    <com.google.android.material.progressindicator.CircularProgressIndicator
-                        android:id="@+id/progressBarCategories"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="184dp"
-                        android:foregroundGravity="center"
-                        android:indeterminate="true"
-                        android:theme="@style/Widget.MaterialComponents.CircularProgressIndicator.Medium"
-                        app:indicatorColor="@android:color/holo_orange_dark"
-                        app:layout_constraintBaseline_toBottomOf="parent" />
 
                 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

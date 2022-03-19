@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/createRecipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentacion.TermsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/btnAtras"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            app:navigationIcon="@drawable/ic_back_24">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/termsAndCondtxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:text="Terms and Conditions"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/titleTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="TERMS AND CONDITIONS OF APP USE"
+                android:textColor="@color/colorPrimaryapp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                tools:layout_editor_absoluteX="-2dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/contentTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:text="1. These Terms and Conditions of Use regulate the rules to which the use of the Let's cook APP (hereinafter, the APP) is subject. The User should read these conditions each time they use the APP, since they could be modified in the future."
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/titleTxt"
+                tools:layout_editor_absoluteX="-2dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/contentTwoTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:text="2. Charges: You are responsible for paying all costs or expenses you incur as a result of downloading and using the APP, including any carrier network or roaming charges. Check with your service provider for details."
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/contentTxt"
+                tools:layout_editor_absoluteX="-2dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/contentTreeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:text="3. Anonymous statistics: The APP reserves the right to track your activity on the App and to report it to our third-party statistical service providers. All this anonymously."
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/contentTwoTxt"
+                tools:layout_editor_absoluteX="-2dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/contentFourTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:text="4. Protection of your personal information: we want to help you carry out all the necessary steps to protect your privacy and information. Please review the APP Privacy Policy and App privacy notices to learn what information we collect and the steps we take to protect your personal information."
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/contentTreeTxt"
+                tools:layout_editor_absoluteX="-2dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/contentFiveTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:text="5. It is forbidden to alter or modify any part of the APP or its contents, circumvent, deactivate or manipulate in any other way (or try to circumvent, deactivate or manipulate) the security functions or other functions of the program and use the APP or its contents for a commercial or advertising purpose. It is also prohibited to make any other use that alters, damages or disables the networks, servers, equipment, products and computer programs of the APP or third parties."
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/contentFourTxt"
+                tools:layout_editor_absoluteX="-2dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/contentSixTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:text="6. The APP and its contents (texts, photographs, graphics, images, technology, software, links, content, graphic design, source code, etc.), as well as trademarks and other distinctive signs are the property of the APP or third parties. , the User not acquiring any rights over them by the mere use of the APP. The User must refrain from: \n
+a) Reproduce, copy, distribute, make available to third parties, publicly communicate, transform or modify the APP or its contents, except in cases contemplated by law or expressly authorized by the APP or by the owner of said rights. \n
+b) Reproduce or copy the APP or its contents for private use, as well as communicate them publicly or make them available to third parties when this entails their reproduction. \n
+c) Extract or reuse all or a substantial part of the contents of the APP."
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/contentFiveTxt"
+                android:layout_marginBottom="100dp">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

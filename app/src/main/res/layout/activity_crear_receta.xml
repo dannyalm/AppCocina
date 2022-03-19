@@ -104,26 +104,33 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/Nametxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Recipe Name: "
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp">
+                </TextView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/recipeNameField"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Recipe Name"
                     app:errorEnabled="true"
                     app:startIconDrawable="@drawable/ic_receta_24">
 
                     <EditText
                         android:id="@+id/txtRecipeName"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
+                        android:layout_height="70dp"
                         android:ems="10"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <!--<com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ingredientsField"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -146,35 +153,89 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add+"
-                    />
+                    />-->
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/Ingredienttxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ingredients: "
+                        android:textSize="18sp">
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/addingBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:text="ADD INGREDIENT"
+                        android:textColor="#9b9b9b"
+                        android:textStyle="bold"
+                        app:icon="@drawable/ic_add_24"
+                        style="?attr/materialButtonOutlinedStyle"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="#9b9b9b"
+                        />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/crearRV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/Measurestxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Instructions: "
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp">
+                </TextView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/measuresField"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Instructions"
-                    app:errorEnabled="true"
-                    app:startIconDrawable="@drawable/ic_measure_24">
+                    app:errorEnabled="true">
 
                     <EditText
                         android:id="@+id/txtMeasures"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="250dp"
                         android:ems="10"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+               <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addingBtn"
+                    android:src="@drawable/ic_add_24"
+                    app:tint="@color/white"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>-->
+
                 <Button
-                    android:id="@+id/btnEditar"
+                    android:id="@+id/btnCrear"
                     style="@style/Widget.Material3.Button.Icon"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginTop="10dp"
                     android:text="SAVE"
                     android:textSize="20sp" />
-
 
             </LinearLayout>
         </ScrollView>
