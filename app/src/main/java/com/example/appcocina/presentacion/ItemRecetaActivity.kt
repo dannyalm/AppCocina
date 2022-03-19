@@ -100,8 +100,9 @@ class ItemRecetaActivity : AppCompatActivity() {
 
     private fun saveRatingRecipe(recipes: Recipes?, idUser: Int?, newRating: Float){
         if (recipes !=null && idUser != null) {
-            var recipeUser = RecipesUserCroosRef(recipes.id_Recipes, idUser, fav, newRating)
             lifecycleScope.launch {
+                var isfav = RecipesUserBL().checkIsSaved(recipes.id_Recipes, idUsuario)
+                var recipeUser = RecipesUserCroosRef(recipes.id_Recipes, idUser, isfav, newRating)
                 RecipesUserBL().saveFavRecipesUser(recipeUser!!)
                 var numRegistros = RecipesUserBL().countRecipeById(recipes.id_Recipes).toFloat()
                 var sumRegistros = RecipesUserBL().sumRecipeById(recipes.id_Recipes).toFloat()
