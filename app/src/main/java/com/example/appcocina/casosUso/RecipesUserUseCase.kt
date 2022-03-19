@@ -20,7 +20,19 @@ class RecipesUserUseCase {
     }
 
     suspend fun getOneRecipeUser(idReceta: String, idUsuario: Int): RecipesUserCroosRef {
-        return AppCocina.getDatabase().recipesUserDao().getRecipesUserById(idReceta, idUsuario)
+        return AppCocina.getDatabase().recipesUserDao().getRecipesUserById(idReceta, idUsuario, true)
+    }
+
+    suspend fun getOneRecipeUserById(idReceta: String, idUsuario: Int): RecipesUserCroosRef? {
+        return AppCocina.getDatabase().recipesUserDao().getOneRecipesUserById(idReceta, idUsuario)
+    }
+
+    suspend fun countRecipe(idRecipe: String): Int {
+        return AppCocina.getDatabase().recipesUserDao().countRecipesById(idRecipe)
+    }
+
+    suspend fun sumRecipe(idRecipe: String): Int {
+        return AppCocina.getDatabase().recipesUserDao().sumRecipesById(idRecipe)
     }
 
 }

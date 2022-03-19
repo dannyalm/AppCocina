@@ -58,7 +58,7 @@ class RecipesUseCase {
         AppCocina.getDatabase().recipesDao().deleteRecipesById(recipes.id_Recipes)
     }
 
-    suspend fun getOneRecipe(id: String): Recipes {
+    suspend fun getOneRecipe(id: String): Recipes? {
         return AppCocina.getDatabase().recipesDao().getRecipesById(id)
     }
 

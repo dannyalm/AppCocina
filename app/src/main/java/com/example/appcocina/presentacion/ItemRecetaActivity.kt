@@ -27,6 +27,7 @@ class ItemRecetaActivity : AppCompatActivity() {
     private lateinit var detalle: Recipes
     private var fav: Boolean = false
     private var idUsuario: Int = 0
+    private var valRating: Float = 0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +49,10 @@ class ItemRecetaActivity : AppCompatActivity() {
         }
 
         binding.floatingActionButtonItem.setOnClickListener() {
-            saveFavRecipes(n, idUsuario)
+            saveFavRecipes(n, idUsuario, valRating)
         }
 
         binding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-
             if (rating == 1f){
                 binding.txtRating.setText("Bad")
             }else if (rating == 2f){
@@ -64,7 +64,8 @@ class ItemRecetaActivity : AppCompatActivity() {
             }else{
                 binding.txtRating.setText("I love it")
             }
-
+            saveRatingRecipe(n,idUsuario,rating)
+            valRating = rating
         }
 
 
@@ -74,13 +75,13 @@ class ItemRecetaActivity : AppCompatActivity() {
 
     }
 
-    private fun saveFavRecipes(recipes: Recipes?, idUser: Int?) {
+    private fun saveFavRecipes(recipes: Recipes?, idUser: Int?, rating: Float) {
         if (recipes != null && idUser != null) {
             if (!fav) {
-                var recipeUser = RecipesUserCroosRef(recipes.id_Recipes, idUser)
+                var recipeUser = RecipesUserCroosRef(recipes.id_Recipes, idUser, true, rating)
                 lifecycleScope.launch {
                     RecipesController().saveFavRecipes(recipes)
-                    RecipesUserBL().saveFavRecipesUser(recipeUser)
+                    RecipesUserBL().saveFavRecipesUser(recipeUser!!)
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)
                     fav = true
                 }
@@ -91,6 +92,29 @@ class ItemRecetaActivity : AppCompatActivity() {
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_border_12)
                     fav = false
                 }
+            }
+        }
+    }
+
+    //Guardar valoración
+
+    private fun saveRatingRecipe(recipes: Recipes?, idUser: Int?, newRating: Float){
+        if (recipes !=null && idUser != null) {
+            var recipeUser = RecipesUserCroosRef(recipes.id_Recipes, idUser, fav, newRating)
+            lifecycleScope.launch {
+                RecipesUserBL().saveFavRecipesUser(recipeUser!!)
+                var numRegistros = RecipesUserBL().countRecipeById(recipes.id_Recipes).toFloat()
+                var sumRegistros = RecipesUserBL().sumRecipeById(recipes.id_Recipes).toFloat()
+                var lastRating = RecipesUserBL().getValRecipeUser(recipes.id_Recipes, idUsuario)!!.toFloat()
+                var newVal = RecipesUserBL().ratingRecipes(sumRegistros, lastRating, newRating, numRegistros)
+                println(sumRegistros)
+                println(lastRating)
+                println(newRating)
+                println(numRegistros)
+                println(newVal)
+                recipes.valoracion = newVal
+                RecipesController().saveFavRecipes(recipes)
+                binding.ratingBarRecipe.rating = recipes.valoracion!!
             }
         }
     }
@@ -173,10 +197,18 @@ class ItemRecetaActivity : AppCompatActivity() {
         binding.progressBarDetailRecipe.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.Main)
         {
+            var rating = RecipesBL().getValRecipe(recipeEntity.id_Recipes)
+            var ratingUser = RecipesUserBL().getValRecipeUser(recipeEntity.id_Recipes, idUsuario)
             detalle = RecipesController().getDetailsOneRecipe(recipeEntity.id_Recipes.toString()).get(0)
             binding.txtNombreReceta.text = detalle.nombre
             binding.txtPasos.text = detalle.pasos
             Picasso.get().load(detalle.img).into(binding.imgReceta)
+            if (rating != null) {
+                binding.ratingBarRecipe.rating = rating
+            }
+            if (ratingUser != null) {
+                binding.ratingBar.rating = ratingUser
+            }
 
             //Video
             if(detalle.video != "" && detalle.video != null){
@@ -204,7 +236,6 @@ class ItemRecetaActivity : AppCompatActivity() {
             }}
 
             //Favoritos
-            println(idUsuario)
             fav = withContext(Dispatchers.IO) { RecipesUserBL().checkIsSaved(recipeEntity.id_Recipes, idUsuario) }
             if (fav) {
                 binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)

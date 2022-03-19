@@ -14,8 +14,17 @@ interface RecipesUserDAO {
     @Query("DELETE FROM recipes_user WHERE id_Recipes = :idRecipe AND id_User = :idUser")
     suspend fun deleteRecipesUser(idRecipe: String, idUser: Int)
 
+    @Query("SELECT * FROM recipes_user WHERE id_Recipes = :idRecipes AND id_User = :idUser AND isFav = :isFavo")
+    suspend fun getRecipesUserById(idRecipes: String, idUser: Int, isFavo: Boolean): RecipesUserCroosRef
+
     @Query("SELECT * FROM recipes_user WHERE id_Recipes = :idRecipes AND id_User = :idUser")
-    suspend fun getRecipesUserById(idRecipes: String, idUser: Int): RecipesUserCroosRef
+    suspend fun getOneRecipesUserById(idRecipes: String, idUser: Int): RecipesUserCroosRef?
+
+    @Query("SELECT count(*) FROM recipes_user WHERE id_Recipes = :idRecipes")
+    suspend fun countRecipesById(idRecipes: String): Int
+
+    @Query("SELECT sum(valoracion) FROM recipes_user WHERE id_Recipes = :idRecipes")
+    suspend fun sumRecipesById(idRecipes: String): Int
 
     //Relación Muchos a Muchos
     @Transaction

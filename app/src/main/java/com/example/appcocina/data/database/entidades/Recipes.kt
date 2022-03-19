@@ -55,5 +55,8 @@ data class Recipes(
     val cantidad19: String?,
     val ingrediente20: String?,
     val cantidad20: String?,
-    val pasos: String?
+    val pasos: String?,
+    var valoracion: Float?,
+    val categoria: String?,
+    val autor: Int?
 )

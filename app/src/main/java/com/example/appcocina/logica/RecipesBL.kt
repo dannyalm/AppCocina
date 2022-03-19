@@ -2,6 +2,7 @@ package com.example.appcocina.logica
 
 import com.example.appcocina.casosUso.RecipesUseCase
 import com.example.appcocina.data.database.entidades.Recipes
+import com.example.appcocina.utils.AppCocina
 
 
 class RecipesBL {
@@ -22,6 +23,11 @@ class RecipesBL {
         val n = RecipesUseCase().getOneRecipe(id)
         return n != null
     }
+
+    suspend fun getValRecipe(id: String): Float? {
+        return RecipesUseCase().getOneRecipe(id)?.valoracion
+    }
+
 
     suspend fun getFavoritesRecipes(): List<Recipes> {
         return RecipesUseCase().getFavoritesRecipes()

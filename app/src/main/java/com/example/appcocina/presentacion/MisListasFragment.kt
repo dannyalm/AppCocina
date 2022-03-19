@@ -10,6 +10,7 @@ import android.widget.SearchView
 import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.appcocina.controladores.RecipesUserController
 import com.example.appcocina.controladores.adapters.RecipesAdapter
 import com.example.appcocina.data.database.entidades.Recipes
 import com.example.appcocina.data.database.entidades.User
@@ -93,7 +94,7 @@ class MisListasFragment : Fragment() {
         binding.progressBarFav.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.Main) {
             items = withContext(Dispatchers.IO) {
-                RecipesUserBL().getFavRecipesUser(us!!.id_User)
+                RecipesUserController().getFavRecipesUser(us!!.id_User)
             } as ArrayList<Recipes>
             binding.listRecyclerViewFav.adapter =
                 RecipesAdapter(items) { getNewsItem(it, idUsuario) }
