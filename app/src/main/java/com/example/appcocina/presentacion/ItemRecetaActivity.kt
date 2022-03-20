@@ -89,7 +89,7 @@ class ItemRecetaActivity : AppCompatActivity() {
             } else {
                 lifecycleScope.launch {
                     RecipesUserBL().deleteFavRecipesUser(recipes.id_Recipes, idUser)
-                    RecipesController().deleteFavRecipes(recipes)
+                    //RecipesController().deleteFavRecipes(recipes)
                     binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_border_12)
                     fav = false
                 }
