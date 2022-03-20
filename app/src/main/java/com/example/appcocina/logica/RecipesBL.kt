@@ -7,12 +7,18 @@ import com.example.appcocina.utils.AppCocina
 
 class RecipesBL {
 
-    suspend fun getRecipesListByCategory(category: String):List<Recipes>{
-        return RecipesUseCase().getRecipesAllByCategory(category)
+    suspend fun getRecipesListByCategory(categoria: String):List<Recipes>{
+        var listAllRecipesByCategory = mutableListOf<Recipes>()
+        listAllRecipesByCategory.addAll(RecipesUseCase().getAllCreatedRecipesByCategory(categoria))
+        listAllRecipesByCategory.addAll(RecipesUseCase().getRecipesAllByCategory(categoria))
+        return listAllRecipesByCategory
     }
 
     suspend fun getRecipesListByIngredient(ingredient: String):List<Recipes>{
-        return RecipesUseCase().getRecipesAllByIngredient(ingredient)
+        var listAllRecipesByIngredient = mutableListOf<Recipes>()
+        listAllRecipesByIngredient.addAll(RecipesUseCase().getAllCreatedRecipesByIngredient(ingredient))
+        listAllRecipesByIngredient.addAll(RecipesUseCase().getRecipesAllByIngredient(ingredient))
+        return listAllRecipesByIngredient
     }
 
     suspend fun getOneRecipeDetail(id: String):List<Recipes>{

@@ -21,6 +21,7 @@ class RecipesUseCase {
         }else (ArrayList<Recipes>())
         return resp
     }
+
     suspend fun getRecipesAllByIngredient(ingredient: String):List<Recipes>{
         val service = RetrofitAPI.getAPI().create(RecipesService::class.java)
         //OJO SE BUSCA POR EL NOMBRE DEL INGREDIENTE
@@ -64,6 +65,14 @@ class RecipesUseCase {
 
     suspend fun getCreatedRecipes(idUser: Int): List<Recipes> {
         return AppCocina.getDatabase().recipesDao().getCreatedRecipes(idUser)
+    }
+
+    suspend fun getAllCreatedRecipesByCategory(categoria: String):List<Recipes>{
+        return AppCocina.getDatabase().recipesDao().getAllCreatedRecipesByCategory(categoria)
+    }
+
+    suspend fun getAllCreatedRecipesByIngredient(ingrediente: String):List<Recipes>{
+        return AppCocina.getDatabase().recipesDao().getAllCreatedRecipesByIngredient(ingrediente)
     }
 
 }

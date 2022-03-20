@@ -29,22 +29,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcocina.R
 import com.example.appcocina.controladores.RecipesController
-import com.example.appcocina.controladores.UserController
 import com.example.appcocina.controladores.adapters.IngredientsCreateAdapter
 import com.example.appcocina.data.database.entidades.Recipes
-import com.example.appcocina.data.database.entidades.User
 import com.example.appcocina.databinding.ActivityCrearRecetaBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CrearRecetaActivity : AppCompatActivity() {
+class CrearRecetaActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     private lateinit var binding: ActivityCrearRecetaBinding
     private lateinit var addsBtn: Button
@@ -82,6 +77,21 @@ class CrearRecetaActivity : AppCompatActivity() {
             }
         }
 
+        //Recuperamos los elementos del string array
+        val lista_categorias = resources.getStringArray(R.array.categorias)
+
+        //Creación del adapter
+        val adapter = ArrayAdapter(
+            this, // Contexto
+            R.layout.list_item_category, //Layout del diseño
+            lista_categorias //Array
+        )
+        //Agregamos el adapter al autoCompleteTextView
+        with(binding.txtCategoria) {
+            setAdapter(adapter)
+            onItemClickListener = this@CrearRecetaActivity
+        }
+
         binding.btnCrear.setOnClickListener() {
             saveCreatedRecipe()
             onBackPressed()
@@ -104,6 +114,13 @@ class CrearRecetaActivity : AppCompatActivity() {
         /**set Dialog*/
         addsBtn.setOnClickListener { addInfo() }
 
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        //Recuperamos el item seleccionado por su posición
+        val item = parent?.getItemAtPosition(position).toString()
+        //Mostramos en un toast del elemento seleccionado
+        Toast.makeText(this@CrearRecetaActivity,item,Toast.LENGTH_SHORT).show()
     }
 
     fun hideSoftKeyboard(view: View) {
@@ -152,7 +169,7 @@ class CrearRecetaActivity : AppCompatActivity() {
         var nombre = binding.txtRecipeName.text.toString()
         var img = imgPath
         var pasos = binding.txtMeasures.text.toString()
-        var categoria = "Beef"
+        var categoria = binding.txtCategoria.text.toString()
         var autor = idUsuario
         var ingredientsList = getIngredientsList()
 
