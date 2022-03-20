@@ -62,4 +62,8 @@ class RecipesUseCase {
         return AppCocina.getDatabase().recipesDao().getRecipesById(id)
     }
 
+    suspend fun getCreatedRecipes(idUser: Int): List<Recipes> {
+        return AppCocina.getDatabase().recipesDao().getCreatedRecipes(idUser)
+    }
+
 }

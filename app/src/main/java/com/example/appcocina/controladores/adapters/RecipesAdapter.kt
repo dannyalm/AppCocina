@@ -1,5 +1,6 @@
 package com.example.appcocina.controladores.adapters
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +35,14 @@ class RecipesViewHolder(itemRecipes: View) : RecyclerView.ViewHolder(itemRecipes
 
     fun render(itemRecipesEntity : Recipes, onClickItemSelected: (Recipes) -> Unit){
         binding.txtNameRecipes.text = itemRecipesEntity.nombre
-        Picasso.get().load(itemRecipesEntity.img).into(binding.imageRecipes)
+        val condición = itemRecipesEntity.img!!?.get(0)
+
+        if(condición.equals('h')){
+            Picasso.get().load(itemRecipesEntity.img).into(binding.imageRecipes)
+        } else {
+            val bitmap = BitmapFactory.decodeFile(itemRecipesEntity.img)
+            binding.imageRecipes?.setImageBitmap(bitmap)
+        }
 
         itemView.setOnClickListener {
             onClickItemSelected(itemRecipesEntity)

@@ -1,6 +1,7 @@
 package com.example.appcocina.presentacion
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -108,11 +109,6 @@ class ItemRecetaActivity : AppCompatActivity() {
                 var sumRegistros = RecipesUserBL().sumRecipeById(recipes.id_Recipes).toFloat()
                 var lastRating = RecipesUserBL().getValRecipeUser(recipes.id_Recipes, idUsuario)!!.toFloat()
                 var newVal = RecipesUserBL().ratingRecipes(sumRegistros, lastRating, newRating, numRegistros)
-                println(sumRegistros)
-                println(lastRating)
-                println(newRating)
-                println(numRegistros)
-                println(newVal)
                 recipes.valoracion = newVal
                 RecipesController().saveFavRecipes(recipes)
                 binding.ratingBarRecipe.rating = recipes.valoracion!!
@@ -200,10 +196,24 @@ class ItemRecetaActivity : AppCompatActivity() {
         {
             var rating = RecipesBL().getValRecipe(recipeEntity.id_Recipes)
             var ratingUser = RecipesUserBL().getValRecipeUser(recipeEntity.id_Recipes, idUsuario)
-            detalle = RecipesController().getDetailsOneRecipe(recipeEntity.id_Recipes.toString()).get(0)
+
+            if(recipeEntity.autor!=-1){
+                detalle = RecipesBL().getOneRecipe(recipeEntity.id_Recipes)!!
+            }else{
+                detalle = RecipesController().getDetailsOneRecipe(recipeEntity.id_Recipes.toString()).get(0)
+
+            }
             binding.txtNombreReceta.text = detalle.nombre
             binding.txtPasos.text = detalle.pasos
-            Picasso.get().load(detalle.img).into(binding.imgReceta)
+            var condición = detalle.img!!?.get(0)
+
+            if(condición.equals('h')){
+                Picasso.get().load(detalle.img).into(binding.imgReceta)
+            } else {
+                val bitmap = BitmapFactory.decodeFile(detalle.img)
+                binding.imgReceta?.setImageBitmap(bitmap)
+            }
+
             if (rating != null) {
                 binding.ratingBarRecipe.rating = rating
             }
@@ -220,7 +230,7 @@ class ItemRecetaActivity : AppCompatActivity() {
             }
             }else {
                 binding.txtYoutube.setOnClickListener() {
-                val toast = Toast.makeText(this@ItemRecetaActivity, "El video no está disponible", Toast.LENGTH_SHORT)
+                val toast = Toast.makeText(this@ItemRecetaActivity, "Video is not available.", Toast.LENGTH_SHORT)
                 toast.show()
             }}
 
@@ -232,7 +242,7 @@ class ItemRecetaActivity : AppCompatActivity() {
                 startActivity(intentSource)
             }}else {
                 binding.txtSource.setOnClickListener(){
-                val toast = Toast.makeText(this@ItemRecetaActivity, "La dirección no está disponible", Toast.LENGTH_SHORT)
+                val toast = Toast.makeText(this@ItemRecetaActivity, "The address is not available.", Toast.LENGTH_SHORT)
                 toast.show()
             }}
 

@@ -40,4 +40,13 @@ class RecipesBL {
     suspend fun deleteRecipeFavRecipes(recipes: Recipes) {
         RecipesUseCase().deleteRecipeFavRecipes(recipes)
     }
+
+    suspend fun getCreatedRecipes(idUser: Int): List<Recipes> {
+        return RecipesUseCase().getCreatedRecipes(idUser)
+    }
+
+    suspend fun getOneRecipe(id: String): Recipes? {
+        return RecipesUseCase().getOneRecipe(id)
+    }
+
 }

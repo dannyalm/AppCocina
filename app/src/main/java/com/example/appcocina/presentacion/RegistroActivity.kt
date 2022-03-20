@@ -87,7 +87,7 @@ class RegistroActivity : AppCompatActivity() {
                     }
                 }
 
-                Toast.makeText(this, "Su cuenta ha sido creada con éxito.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Your account has been successfully created.", Toast.LENGTH_LONG).show()
                 var intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
 

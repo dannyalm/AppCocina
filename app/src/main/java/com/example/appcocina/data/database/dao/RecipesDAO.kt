@@ -12,6 +12,9 @@ interface RecipesDAO {
     @Query("SELECT * FROM recipes WHERE id_Recipes = :idRecipes")
     suspend fun getRecipesById(idRecipes: String): Recipes?
 
+    @Query("SELECT * FROM recipes WHERE autor = :idUser")
+    suspend fun getCreatedRecipes(idUser: Int): List<Recipes>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipes(recipes: Recipes)
 

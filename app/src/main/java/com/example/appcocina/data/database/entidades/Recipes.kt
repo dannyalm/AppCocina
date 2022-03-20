@@ -60,3 +60,11 @@ data class Recipes(
     val categoria: String?,
     val autor: Int?
 )
+{
+    init {
+        if (this.img == null) {
+            this.img =
+                "https://isabelpaz.com/wp-content/themes/nucleare-pro/images/no-image-box.png"
+        }
+    }
+}

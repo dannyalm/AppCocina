@@ -131,6 +131,7 @@ class EditarPerfilActivity : AppCompatActivity(), AdapterView.OnItemClickListene
             lifecycleScope.launch {
                 UserController().updateUser(user)
             }
+            Toast.makeText(this, "Your data has been successfully updated.", Toast.LENGTH_LONG).show()
         }
     }
 

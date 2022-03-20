@@ -22,6 +22,7 @@ import kotlinx.serialization.json.Json
 class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
+    var us: User? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,14 +38,13 @@ class HomeFragment : Fragment() {
       super.onStart()
 
       binding.createButton.setOnClickListener() {
-          crearReceta()
+          crearReceta(us!!.id_User)
       }
   }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var us: User? = null
         activity!!.intent.extras?.let {
             us = Json.decodeFromString<User>(it.getString("usuario").toString())
         }
@@ -84,8 +84,9 @@ class HomeFragment : Fragment() {
         startActivity(i)
     }
 
-    fun crearReceta() {
+    fun crearReceta(idUser: Int) {
         var intent = Intent(activity, CrearRecetaActivity::class.java)
+        intent.putExtra("idUsuario", idUser)
         startActivity(intent)
     }
 
