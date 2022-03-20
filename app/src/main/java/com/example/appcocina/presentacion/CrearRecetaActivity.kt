@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.isEmpty
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -93,8 +94,29 @@ class CrearRecetaActivity : AppCompatActivity(), AdapterView.OnItemClickListener
         }
 
         binding.btnCrear.setOnClickListener() {
-            saveCreatedRecipe()
-            onBackPressed()
+
+            //Validacion completar todos los campos
+            if(binding.txtRecipeName.text.toString()== "" || binding.txtCategoria.text.toString() == "" ||
+                    binding.txtMeasures.text.toString()== ""){
+                binding.recipeNameField.error = "Name Required"
+                binding.recipeCategoryField.error = "Category Required"
+                binding.measuresField.error = "Instructions Required"
+
+            }else{
+
+                binding.recipeNameField.error = null
+                binding.recipeCategoryField.error = null
+                binding.measuresField.error = null
+
+                if(binding.crearRV.isEmpty()){
+                    Toast.makeText(this, "Please, introduce a ingredient", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    saveCreatedRecipe()
+                    onBackPressed()
+                }
+
+            }
         }
 
         binding.createRecipe.setOnClickListener() {
@@ -150,13 +172,12 @@ class CrearRecetaActivity : AppCompatActivity(), AdapterView.OnItemClickListener
                 ,"","","","","","","","","",null,"",null))
             createAdapter.notifyDataSetChanged()
 
-            Toast.makeText(this,"Adding User Information Success",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Adding Ingredient Information Success",Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
         addDialog.setNegativeButton("Cancel"){
                 dialog,_->
             dialog.dismiss()
-            Toast.makeText(this,"Cancel",Toast.LENGTH_SHORT).show()
 
         }
         addDialog.create()
@@ -228,13 +249,6 @@ class CrearRecetaActivity : AppCompatActivity(), AdapterView.OnItemClickListener
         Toast.makeText(this, "Your recipe has been created successfully.", Toast.LENGTH_LONG).show()
 
     }
-
-
-
-
-
-
-
 
     //Para acceder a la galeria
     private fun openGallery(){

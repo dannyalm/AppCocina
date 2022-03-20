@@ -74,7 +74,7 @@ class PerfilFragment : Fragment() {
     fun loadInformation(user: User) {
         binding.textNombre.text = user.nombre
         binding.textApellido.text = user.apellido
-       // binding.txtCorreo.text = user.correo
+        binding.txtCorreo.text = user.correo
         if (user.img!=null){
             val bitmap = BitmapFactory.decodeFile(user.img)
             binding.imgPerfil?.setImageBitmap(bitmap)

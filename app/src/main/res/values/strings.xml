@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AppCocina</string>
-    <string name="errorEmail">Email Incorrecto</string>
-    <string name="errorPassword">Password Incorrecto</string>
+    <string name="errorEmail">Email Required</string>
+    <string name="errorPassword">Password Required</string>
     <string name="privacyPolicies"><u><b>Privacy Policies</b></u></string>
     <string name="terms"><u><b>Terms and Conditions,</b></u></string>
     <string-array name="generos">

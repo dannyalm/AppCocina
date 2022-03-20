@@ -20,6 +20,9 @@ import com.example.appcocina.databinding.ActivityLoginBinding
 import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import android.text.TextUtils
+import android.util.Patterns
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -64,16 +67,21 @@ class LoginActivity : AppCompatActivity() {
                     binding.txtPassword.text.toString()
                 )
 
-                if (access) {
+                if(binding.txtEmail.text.toString() == "" || binding.txtPassword.text.toString() == "") {
+
                     binding.emailField.error = getString(R.string.errorEmail)
                     binding.passwordField.error = getString(R.string.errorPassword)
-                }
-                else {
+
+                }else if (access) {
+
                     binding.emailField.error = null
                     binding.passwordField.error = null
-                    iniciarSesion(user)
+                    Toast.makeText(this@LoginActivity, "Wrong e-mail or password", Toast.LENGTH_LONG).show()
                 }
-            }
+                else {
+                    Toast.makeText(this@LoginActivity, "Welcome", Toast.LENGTH_LONG).show()
+                    iniciarSesion(user)
+            }}
 
         }
 

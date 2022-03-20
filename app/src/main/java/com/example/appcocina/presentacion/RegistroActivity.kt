@@ -6,6 +6,8 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,19 +30,18 @@ class RegistroActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegistroBinding
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.termsTxt.setOnClickListener() {
-           var intent = Intent(this,TermsActivity::class.java)
+            var intent = Intent(this, TermsActivity::class.java)
             startActivity(intent)
         }
 
         binding.policiesTxt.setOnClickListener() {
-            var intent = Intent(this,PolicyActivity::class.java)
+            var intent = Intent(this, PolicyActivity::class.java)
             startActivity(intent)
         }
 
@@ -58,39 +59,55 @@ class RegistroActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
 
-        binding.txtLogin.setOnClickListener(){
+        binding.txtLogin.setOnClickListener() {
             var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
         binding.btnRegistrar.setOnClickListener() {
-            if (binding.txtEmail.text.toString().trim() == "" && binding.txtPassword.text.toString().trim() == "") { //Elimino espacios en blanco
-                binding.emailField.error = "Ingrese un correo"
-                binding.passwordField.error = "Ingrese una contraseña"
-            }
-            else {
-                binding.emailField.error = null
-                binding.passwordField.error = null
 
-                var correo = binding.txtEmail.text.toString().trim().lowercase()
-                var contrasena = binding.txtPassword.text.toString().trim().lowercase()
-                var nombre = binding.txtUsuario.text.toString().trim()
-                var apellido = binding.txtApellido.text.toString().trim()
+            if (binding.txtEmail.text.toString().trim() == "" || binding.txtPassword.text.toString()
+                    .trim() == "" ||
+                binding.txtUsuario.text.toString()
+                    .trim() == "" || binding.txtApellido.text.toString().trim() == ""
+            ) { //Elimino espacios en blanco
+                binding.emailField.error = "E-mail Required"
+                binding.passwordField.error = "Password Required"
+                binding.nombreField.error = "Name Required"
+                binding.apellidoField.error = "Lastname Required"
 
-                lifecycleScope.launch(Dispatchers.Main)
-                {
-                    var us: User? = null
+            } else {
 
-                    us = User(correo, contrasena, nombre, apellido, 0, "", null)
+                if(Patterns.EMAIL_ADDRESS.matcher(binding.txtEmail.text).matches()){
 
-                    if (us != null) {
-                        UserController().registerUser(us)
+                    binding.emailField.error = null
+                    binding.passwordField.error = null
+                    binding.apellidoField.error = null
+                    binding.nombreField.error = null
+
+                    var correo = binding.txtEmail.text.toString().trim().lowercase()
+                    var contrasena = binding.txtPassword.text.toString().trim().lowercase()
+                    var nombre = binding.txtUsuario.text.toString().trim()
+                    var apellido = binding.txtApellido.text.toString().trim()
+
+                    lifecycleScope.launch(Dispatchers.Main)
+                    {
+                        var us: User? = null
+
+                        us = User(correo, contrasena, nombre, apellido, 0, "", null)
+
+                        if (us != null) {
+                            UserController().registerUser(us)
+                        }
                     }
+
+                    Toast.makeText(this, "Your account has been successfully created", Toast.LENGTH_LONG).show()
+                    var intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+
+                }else{
+                    Toast.makeText(this, "Please, introduce a valid e-mail", Toast.LENGTH_LONG).show()
+
                 }
-
-                Toast.makeText(this, "Your account has been successfully created.", Toast.LENGTH_LONG).show()
-                var intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-
             }
         }
 
