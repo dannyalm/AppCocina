@@ -343,7 +343,7 @@ class CrearRecetaActivity : AppCompatActivity(), AdapterView.OnItemClickListener
                     PackageManager.PERMISSION_GRANTED){
                     openGallery()
                 }else {
-                    show("Lamentablemente, se le ha denegado el permiso para realizar esta operación.")
+                    show("Unfortunately, you have been denied permission to perform this operation.")
                 }
         }
     }
