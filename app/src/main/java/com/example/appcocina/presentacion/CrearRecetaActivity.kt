@@ -16,6 +16,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -33,8 +34,12 @@ import com.example.appcocina.controladores.RecipesController
 import com.example.appcocina.controladores.adapters.IngredientsCreateAdapter
 import com.example.appcocina.data.database.entidades.Recipes
 import com.example.appcocina.databinding.ActivityCrearRecetaBinding
+import com.example.appcocina.logica.RecipesBL
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
@@ -47,9 +52,11 @@ class CrearRecetaActivity : AppCompatActivity(), AdapterView.OnItemClickListener
     private lateinit var recRV: RecyclerView
     private lateinit var createList:ArrayList<Recipes>
     private lateinit var createAdapter:IngredientsCreateAdapter
+    private lateinit var detalle: Recipes
     private var idUsuario: Int = 0
     private var mUri: Uri? = null
     private var imgPath: String? = null
+    private var ideReceta: String? = null
     private val OPERATION_CAPTURE_PHOTO = 1
     private val OPERATION_CHOOSE_PHOTO = 2
 
@@ -60,6 +67,22 @@ class CrearRecetaActivity : AppCompatActivity(), AdapterView.OnItemClickListener
 
         idUsuario = intent.extras?.getInt("idUsuario")!!
 
+        var n: Recipes? = null
+
+        try {
+            intent.extras?.let {
+                n = Json.decodeFromString<Recipes>(it.getString("receta").toString())
+            }
+
+        }catch (e: Exception){
+            n = null
+        }
+
+        if (n != null) {
+            binding.txtCreateRecipe.text = "Edit Recipe"
+            loadInfo(n!!)
+            //loadRecipe(n!!)
+        }
 
         binding.btnAtras.setOnClickListener(){
             onBackPressed()
@@ -186,7 +209,7 @@ class CrearRecetaActivity : AppCompatActivity(), AdapterView.OnItemClickListener
 
     private fun saveCreatedRecipe(){
 
-        var id_Recipe = UUID.randomUUID().toString()
+        var id_Recipe = ideReceta.toString()
         var nombre = binding.txtRecipeName.text.toString()
         var img = imgPath
         var pasos = binding.txtMeasures.text.toString()
@@ -381,6 +404,164 @@ class CrearRecetaActivity : AppCompatActivity(), AdapterView.OnItemClickListener
             j++
         }
         return ingredientsList
+    }
+
+    private fun loadInfo(recipe: Recipes){
+
+        binding.progressBarEditRecipe.visibility = View.VISIBLE
+        lifecycleScope.launch(Dispatchers.Main)
+        {
+            if (recipe.autor == idUsuario) {
+                ideReceta = recipe.id_Recipes
+            } else {
+                ideReceta = UUID.randomUUID().toString()
+            }
+            if (recipe.autor != -1) {
+                detalle = RecipesBL().getOneRecipe(recipe.id_Recipes)!!
+            } else {
+                detalle =
+                    RecipesController().getDetailsOneRecipe(recipe.id_Recipes.toString()).get(0)
+            }
+
+            binding.txtRecipeName.text = Editable.Factory.getInstance().newEditable(detalle!!.nombre)
+            binding.txtCategoria.text =
+            Editable.Factory.getInstance().newEditable(detalle!!.categoria)
+            binding.txtMeasures.text = Editable.Factory.getInstance().newEditable(detalle!!.pasos)
+            imgPath=detalle.img
+
+            var condición = detalle!!.img!!?.get(0)
+            if (condición.equals('h')) {
+                Picasso.get().load(detalle!!.img).into(binding.imageReceta)
+            } else {
+                val bitmap = BitmapFactory.decodeFile(detalle!!.img)
+                binding.imageReceta?.setImageBitmap(bitmap)
+            }
+
+            var ingrediente: String=""
+            var cantidad: String=""
+            //Ingredientes y Cantidad
+            if ( detalle.ingrediente1 != "" && detalle.ingrediente1 != null){
+                ingrediente = detalle.ingrediente1.toString()
+                cantidad = detalle.cantidad1.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente2 != "" && detalle.ingrediente2 != null){
+                ingrediente = detalle.ingrediente2.toString()
+                cantidad = detalle.cantidad2.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente3 != "" && detalle.ingrediente3 != null){
+                ingrediente = detalle.ingrediente3.toString()
+                cantidad = detalle.cantidad3.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente4 != "" && detalle.ingrediente4 != null){
+                ingrediente = detalle.ingrediente4.toString()
+                cantidad = detalle.cantidad4.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente5 != "" && detalle.ingrediente5 != null){
+                ingrediente = detalle.ingrediente5.toString()
+                cantidad = detalle.cantidad5.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente6 != "" && detalle.ingrediente6 != null){
+                ingrediente = detalle.ingrediente6.toString()
+                cantidad = detalle.cantidad6.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente7 != "" && detalle.ingrediente7 != null){
+                ingrediente = detalle.ingrediente7.toString()
+                cantidad = detalle.cantidad7.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente8 != "" && detalle.ingrediente8 != null){
+                ingrediente = detalle.ingrediente8.toString()
+                cantidad = detalle.cantidad8.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente9 != "" && detalle.ingrediente9 != null){
+                ingrediente = detalle.ingrediente9.toString()
+                cantidad = detalle.cantidad9.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente10 != "" && detalle.ingrediente10 != null){
+                ingrediente = detalle.ingrediente10.toString()
+                cantidad = detalle.cantidad10.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente11 != "" && detalle.ingrediente11 != null){
+                ingrediente = detalle.ingrediente11.toString()
+                cantidad = detalle.cantidad11.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente12 != "" && detalle.ingrediente12 != null){
+                ingrediente = detalle.ingrediente12.toString()
+                cantidad = detalle.cantidad12.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente13 != "" && detalle.ingrediente13 != null){
+                ingrediente = detalle.ingrediente13.toString()
+                cantidad = detalle.cantidad13.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente14 != "" && detalle.ingrediente14 != null){
+                ingrediente = detalle.ingrediente14.toString()
+                cantidad = detalle.cantidad14.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente15 != "" && detalle.ingrediente15 != null){
+                ingrediente = detalle.ingrediente15.toString()
+                cantidad = detalle.cantidad15.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente16 != "" && detalle.ingrediente16 != null){
+                ingrediente = detalle.ingrediente16.toString()
+                cantidad = detalle.cantidad16.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente17 != "" && detalle.ingrediente17 != null){
+                ingrediente = detalle.ingrediente17.toString()
+                cantidad = detalle.cantidad17.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente18 != "" && detalle.ingrediente18 != null){
+                ingrediente = detalle.ingrediente18.toString()
+                cantidad = detalle.cantidad18.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente19 != "" && detalle.ingrediente19 != null){
+                ingrediente = detalle.ingrediente19.toString()
+                cantidad = detalle.cantidad19.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            if ( detalle.ingrediente20 != "" && detalle.ingrediente20 != null){
+                ingrediente = detalle.ingrediente20.toString()
+                cantidad = detalle.cantidad20.toString()
+                createList.add(Recipes("","","","","","$ingrediente","$cantidad","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",null,"",null))
+                createAdapter.notifyDataSetChanged()
+            }
+            binding.progressBarEditRecipe.visibility = View.GONE
+        }
     }
 
 }

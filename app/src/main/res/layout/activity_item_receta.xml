@@ -288,6 +288,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="15dp"
+                                android:layout_marginTop="10dp"
                                 android:text="Did you like the recipe?"
                                 android:layout_gravity="center"
                                 android:textSize="18sp" />
@@ -309,6 +310,40 @@
                                 android:padding="15dp"
                                 android:layout_gravity="center"
                                 android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/txtChange"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="15dp"
+                                android:layout_marginTop="14dp"
+                                android:text="Do you want to modify the recipe?"
+                                android:layout_gravity="center"
+                                android:textSize="18sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="30dp"
+                                app:cardBackgroundColor="#E8DAEF"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="0dp"
+                                app:cardUseCompatPadding="true">
+
+                            <TextView
+                                android:id="@+id/txtEditRecipe"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_edit_24"
+                                android:drawablePadding="15dp"
+                                android:gravity="center_vertical"
+                                android:padding="10dp"
+                                android:text="Edit"
+                                android:textColor="#ff2a7e2f"
+                                android:textSize="12sp" />
+                            </androidx.cardview.widget.CardView>
+
 
                         </LinearLayout>
 

@@ -94,53 +94,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/materialCardView3"
-                android:layout_width="200dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="110dp"
-                android:layout_marginBottom="32dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@color/white"
-                app:strokeWidth="0dp">
-
             <TextView
                 android:id="@+id/textNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Gregory"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/imgPerfil"
-                 />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textApellido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="65dp"
-                android:layout_marginTop="4dp"
-                android:text="Díaz"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/textNombre"
-                 />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textNombre"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtCorreo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="gadiazr@hotmail.com"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:text="mail"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/textNombre"
+                app:layout_constraintStart_toEndOf="@+id/imgPerfil"
                 app:layout_constraintTop_toBottomOf="@+id/textNombre" />
-
-            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView2"

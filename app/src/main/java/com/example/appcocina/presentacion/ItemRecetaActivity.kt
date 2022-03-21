@@ -20,6 +20,7 @@ import com.example.appcocina.logica.RecipesUserBL
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class ItemRecetaActivity : AppCompatActivity() {
@@ -72,6 +73,10 @@ class ItemRecetaActivity : AppCompatActivity() {
 
         binding.txtShareRecipe.setOnClickListener{
             shareRecipes()
+        }
+
+        binding.txtEditRecipe.setOnClickListener{
+            editRecipe(n!!,idUsuario)
         }
 
     }
@@ -201,7 +206,6 @@ class ItemRecetaActivity : AppCompatActivity() {
                 detalle = RecipesBL().getOneRecipe(recipeEntity.id_Recipes)!!
             }else{
                 detalle = RecipesController().getDetailsOneRecipe(recipeEntity.id_Recipes.toString()).get(0)
-
             }
             binding.txtNombreReceta.text = detalle.nombre
             binding.txtPasos.text = detalle.pasos
@@ -317,4 +321,13 @@ class ItemRecetaActivity : AppCompatActivity() {
             binding.txtCantidad.append("\n \u2022"+detalle.cantidad20)}
         }
     }
+
+    private fun editRecipe(recipesEntity: Recipes, idUser: Int){
+        var intent = Intent(this, CrearRecetaActivity::class.java)
+        val jsonString = Json.encodeToString(recipesEntity)
+        intent.putExtra("receta", jsonString)
+        intent.putExtra("idUsuario", idUser)
+        startActivity(intent)
+    }
+
 }
